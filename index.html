@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pawan Bulathwaththa Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --dark-bg: #0d1117;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--dark-bg);
+            color: #c9d1d9;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background-color: rgba(13, 17, 23, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #58a6ff !important;
+        }
+
+        .nav-link {
+            color: #c9d1d9 !important;
+            transition: color 0.3s;
+            margin: 0 10px;
+        }
+
+        .nav-link:hover {
+            color: #58a6ff !important;
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(88, 166, 255, 0.1) 0%, transparent 70%);
+            top: -250px;
+            right: -250px;
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-image-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 5px solid var(--primary-color);
+            box-shadow: 0 10px 40px rgba(88, 166, 255, 0.3);
+            object-fit: cover;
+            transition: all 0.3s;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 50px rgba(88, 166, 255, 0.5);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #58a6ff, #79c0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #8b949e;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(88, 166, 255, 0.4);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 10px 28px;
+            font-weight: 600;
+            transition: all 0.3s;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #58a6ff;
+        }
+
+        .about-section {
+            background-color: var(--card-bg);
+        }
+
+        .about-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 30px 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 5px 20px rgba(88, 166, 255, 0.2);
+        }
+
+        .skill-card i {
+            font-size: 3rem;
+            color: #58a6ff;
+            margin-bottom: 15px;
+        }
+
+        .education-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .education-card:hover {
+            transform: translateX(10px);
+            border-color: var(--primary-color);
+        }
+
+        .education-title {
+            color: #58a6ff;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .education-institution {
+            color: #8b949e;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .education-year {
+            color: #6e7681;
+            font-style: italic;
+        }
+
+        .gpa-badge {
+            display: inline-block;
+            background-color: rgba(88, 166, 255, 0.2);
+            color: #58a6ff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .experience-card {
+            background-color: var(--card-bg);
+            border-left: 3px solid var(--primary-color);
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .experience-title {
+            color: #58a6ff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .experience-org {
+            color: #8b949e;
+            margin-bottom: 5px;
+        }
+
+        .experience-year {
+            color: #6e7681;
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #58a6ff;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(88, 166, 255, 0.4);
+        }
+
+        footer {
+            background-color: var(--card-bg);
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .contact-info {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-info i {
+            color: #58a6ff;
+            margin-right: 15px;
+            font-size: 1.2rem;
+            width: 25px;
+        }
+
+        .contact-item {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .soft-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .soft-skill-badge {
+            background-color: rgba(88, 166, 255, 0.1);
+            border: 1px solid rgba(88, 166, 255, 0.3);
+            color: #58a6ff;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .soft-skill-badge:hover {
+            background-color: rgba(88, 166, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-color: var(--primary-color);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #58a6ff;
+        }
+
+        .project-description {
+            flex-grow: 1;
+            margin-bottom: 15px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .tag {
+            background-color: rgba(88, 166, 255, 0.1);
+            color: #58a6ff;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(88, 166, 255, 0.3);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .project-link {
+            color: #58a6ff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .project-link:hover {
+            color: #79c0ff;
+        }
+
+        .btn-cv-download {
+            background: linear-gradient(45deg, #58a6ff, #79c0ff);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: white;
+        }
+
+        .btn-cv-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(88, 166, 255, 0.5);
+            color: white;
+        }
+
+        .btn-cv-download i {
+            margin-right: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home"><i class="fab fa-github"></i> Pawan Bulathwaththa</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7 hero-content">
+                    <h1 class="hero-title">Hi, I'm Pawan Bulathwaththa</h1>
+                    <p class="hero-subtitle">Undergraduate at NIBM - BSc (Hons) in Software Engineering</p>
+                    <p class="mb-4">Motivated and detail-oriented Software Engineering undergraduate seeking an internship opportunity to apply academic knowledge, develop practical skills, and contribute to innovative software development projects. Passionate about backend development, web technologies, and database management.</p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="cv-pawan bulathwaththa.pdf" download class="btn btn-cv-download">
+                            <i class="fas fa-download"></i>Download CV
+                        </a>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/PawanBulathwaththa" target="_blank" class="social-link" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/pawan-bulathwaththa" target="_blank" class="social-link" title="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:pawanbulatwaththa@gmail.com" class="social-link" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="tel:+94717524985" class="social-link" title="Phone">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-5 text-center profile-image-container">
+                    <img src="myphoto.png" alt="Pawan Bulathwaththa" class="profile-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="about-content">
+                        <p>I'm a dedicated Software Engineering student at NIBM City University, currently pursuing my Higher Diploma in Software Engineering. With a strong academic foundation (GPA 3.72 in my Diploma in Computer System Design), I'm committed to excellence in software development.</p>
+                        <p>My passion lies in backend development, web technologies, and database management. I believe in continuous learning and actively participate in various extracurricular activities, including serving as President of the Media Club and Editor of the Rotaract Club at NIBM Kandy.</p>
+                        <p>I'm eager to apply my theoretical knowledge in real-world scenarios and contribute to innovative software development projects through internship opportunities.</p>
+                    </div>
+                    
+                    <h4 class="text-center mt-5 mb-3" style="color: #58a6ff;">Soft Skills</h4>
+                    <div class="soft-skills">
+                        <span class="soft-skill-badge"><i class="fas fa-lightbulb me-2"></i>Problem Solving</span>
+                        <span class="soft-skill-badge"><i class="fas fa-users me-2"></i>Teamwork</span>
+                        <span class="soft-skill-badge"><i class="fas fa-comments me-2"></i>Communication</span>
+                        <span class="soft-skill-badge"><i class="fas fa-sync-alt me-2"></i>Adaptability</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="education-card">
+                        <div class="education-title">Higher Diploma in Software Engineering</div>
+                        <div class="education-institution">NIBM City University</div>
+                        <div class="education-year">2024 - 2025</div>
+                    </div>
+                    
+                    <div class="education-card">
+                        <div class="education-title">Diploma in Computer System Design</div>
+                        <div class="education-institution">NIBM City University</div>
+                        <div class="education-year">2023 - 2024</div>
+                        <span class="gpa-badge">GPA: 3.72</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section about-section">
+        <div class="container">
+            <h2 class="section-title">Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fas fa-server"></i>
+                    <h5>Backend Development</h5>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-code"></i>
+                    <h5>Web Technologies</h5>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-database"></i>
+                    <h5>Database Management</h5>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-java"></i>
+                    <h5>Java</h5>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-python"></i>
+                    <h5>Python</h5>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-html5"></i>
+                    <h5>HTML5</h5>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-css3-alt"></i>
+                    <h5>CSS3</h5>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-js"></i>
+                    <h5>JavaScript</h5>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-project-diagram"></i>
+                    <h5>System Design</h5>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-git-alt"></i>
+                    <h5>Git & GitHub</h5>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-cogs"></i>
+                    <h5>Software Engineering</h5>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-layer-group"></i>
+                    <h5>API Development</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Projects & Academic Work</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/400x200/161b22/58a6ff?text=Student+Management+System" alt="Student Management System">
+                        <div class="project-content">
+                            <h3 class="project-title">Student Management System</h3>
+                            <p class="project-description">A comprehensive web-based system for managing student records, courses, and grades. Features include student enrollment, attendance tracking, and report generation.</p>
+                            <div class="project-tags">
+                                <span class="tag">Java</span>
+                                <span class="tag">MySQL</span>
+                                <span class="tag">HTML/CSS</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fab fa-github"></i> View Code</a>
+                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/400x200/161b22/58a6ff?text=E-Commerce+Platform" alt="E-Commerce Platform">
+                        <div class="project-content">
+                            <h3 class="project-title">E-Commerce Platform</h3>
+                            <p class="project-description">Full-stack e-commerce application with product catalog, shopping cart, user authentication, and payment integration. Built with modern web technologies.</p>
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Django</span>
+                                <span class="tag">PostgreSQL</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fab fa-github"></i> View Code</a>
+                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/400x200/161b22/58a6ff?text=Library+Management+API" alt="Library Management API">
+                        <div class="project-content">
+                            <h3 class="project-title">Library Management API</h3>
+                            <p class="project-description">RESTful API for library management with book cataloging, member management, borrowing system, and automated fine calculation.</p>
+                            <div class="project-tags">
+                                <span class="tag">Node.js</span>
+                                <span class="tag">Express</span>
+                                <span class="tag">MongoDB</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fab fa-github"></i> View Code</a>
+                                <a href="#" class="project-link"><i class="fas fa-book"></i> Documentation</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/400x200/161b22/58a6ff?text=Task+Tracker+App" alt="Task Tracker App">
+                        <div class="project-content">
+                            <h3 class="project-title">Task Tracker Application</h3>
+                            <p class="project-description">A productivity app for managing daily tasks and projects with features like task prioritization, deadlines, categories, and progress tracking.</p>
+                            <div class="project-tags">
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">React</span>
+                                <span class="tag">Firebase</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fab fa-github"></i> View Code</a>
+                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/400x200/161b22/58a6ff?text=Weather+Dashboard" alt="Weather Dashboard">
+                        <div class="project-content">
+                            <h3 class="project-title">Weather Dashboard</h3>
+                            <p class="project-description">Real-time weather application with location-based forecasts, interactive maps, and historical data visualization using weather APIs.</p>
+                            <div class="project-tags">
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">API Integration</span>
+                                <span class="tag">Charts.js</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fab fa-github"></i> View Code</a>
+                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/400x200/161b22/58a6ff?text=Database+Design+Project" alt="Database Design Project">
+                        <div class="project-content">
+                            <h3 class="project-title">Hospital Database System</h3>
+                            <p class="project-description">Comprehensive database design project for hospital management including patient records, appointments, medical history, and billing system.</p>
+                            <div class="project-tags">
+                                <span class="tag">MySQL</span>
+                                <span class="tag">Database Design</span>
+                                <span class="tag">SQL</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fab fa-github"></i> View Code</a>
+                                <a href="#" class="project-link"><i class="fas fa-file-alt"></i> Documentation</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title">Extracurricular Activities</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="experience-card">
+                        <div class="experience-title"><i class="fas fa-trophy me-2"></i>President - Media Club</div>
+                        <div class="experience-org">NIBM Kandy</div>
+                        <div class="experience-year">2024 - 2025</div>
+                        <p class="mt-2">Leading the media club, organizing events, managing content creation, and coordinating with team members to enhance the institution's media presence.</p>
+                    </div>
+                    
+                    <div class="experience-card">
+                        <div class="experience-title"><i class="fas fa-edit me-2"></i>Editor - Rotaract Club</div>
+                        <div class="experience-org">NIBM Kandy</div>
+                        <div class="experience-year">Rotaract Year 2024 - 2025</div>
+                        <p class="mt-2">Responsible for editing and managing club publications, documenting events, and maintaining communication materials for the Rotaract Club.</p>
+                    </div>
+                    
+                    <div class="experience-card">
+                        <div class="experience-title"><i class="fas fa-laptop-code me-2"></i>Active Member - IT Society</div>
+                        <div class="experience-org">NIBM Kandy</div>
+                        <div class="experience-year">2023 - 2025</div>
+                        <p class="mt-2">Actively participating in IT society activities, workshops, hackathons, and collaborative projects to enhance technical skills and knowledge.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section about-section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span><a href="mailto:pawanbulatwaththa@gmail.com" style="color: #c9d1d9; text-decoration: none;">pawanbulatwaththa@gmail.com</a></span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span><a href="tel:+94717524985" style="color: #c9d1d9; text-decoration: none;">+94 71 752 4985</a></span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>No: 16/4, Bulathwaththawalawwa, Udugoda, Panvila, Sri Lanka</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-github"></i>
+                            <span><a href="https://github.com/PawanBulathwaththa" target="_blank" style="color: #58a6ff; text-decoration: none;">github.com/PawanBulathwaththa</a></span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-linkedin"></i>
+                            <span><a href="https://linkedin.com/in/pawan-bulathwaththa" target="_blank" style="color: #58a6ff; text-decoration: none;">linkedin.com/in/pawan-bulathwaththa</a></span>
+                        </div>
+                    </div>
+
+                    <div class="mt-5">
+                        <h4 class="text-center mb-4" style="color: #58a6ff;">References</h4>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="contact-info">
+                                    <h5 style="color: #58a6ff; margin-bottom: 15px;">Mr. Manjula Kulathunga</h5>
+                                    <p class="mb-2"><small>Lecturer of NIBM City University</small></p>
+                                    <p class="mb-2"><small>Kandy, Sri Lanka</small></p>
+                                    <div class="contact-item mb-2">
+                                        <i class="fas fa-envelope"></i>
+                                        <span><small>pmkkulathunga@gmail.com</small></span>
+                                    </div>
+                                    <div class="contact-item mb-0">
+                                        <i class="fas fa-phone"></i>
+                                        <span><small>+94 77 620 0029</small></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="contact-info">
+                                    <h5 style="color: #58a6ff; margin-bottom: 15px;">Ms. Anjula Weerasinghe</h5>
+                                    <p class="mb-2"><small>Consultant Lecturer of NIBM City University</small></p>
+                                    <p class="mb-2"><small>Kandy, Sri Lanka</small></p>
+                                    <div class="contact-item mb-2">
+                                        <i class="fas fa-envelope"></i>
+                                        <span><small>anjula@nibm.lk</small></span>
+                                    </div>
+                                    <div class="contact-item mb-0">
+                                        <i class="fas fa-phone"></i>
+                                        <span><small>+94 71 322 9158</small></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="mb-0">&copy; 2025 Pawan Bulathwaththa. Built with <i class="fas fa-heart" style="color: #ff6b6b;"></i> and Bootstrap</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    const navbarCollapse = document.querySelector('.navbar-collapse');
+                    if (navbarCollapse.classList.contains('show')) {
+                        navbarCollapse.classList.remove('show');
+                    }
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.backgroundColor = 'rgba(13, 17, 23, 0.98)';
+            } else {
+                navbar.style.backgroundColor = 'rgba(13, 17, 23, 0.95)';
+            }
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        document.querySelectorAll('.skill-card, .education-card, .experience-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.5s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
