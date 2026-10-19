@@ -1,662 +1,1400 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pawan Bulathwaththa | Full Stack Developer</title>
-    <meta name="description" content="Full Stack Developer skilled in Spring Boot, Next.js, TypeScript, Docker, Keycloak and CI/CD. BSc Hons Computer Science - Coventry University.">
-    <meta name="keywords" content="Pawan Bulathwaththa, Full Stack Developer, Spring Boot, Next.js, TypeScript, Sri Lanka">
-    <meta name="author" content="Pawan Bulathwaththa">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <style>
-        :root {
-            --bg-void: #0a0a0a;
-            --bg-surface: #121212;
-            --bg-surface-raised: #181818;
-            --border-line: #242424;
-            --border-strong: #3e3e3e;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pawan Bulathwaththa | Full Stack Developer — IntelliJ IDEA</title>
+<meta name="description" content="Pawan Bulathwaththa — Full Stack Developer (Spring Boot, Next.js, Docker). Launch the developer environment to explore portfolio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --ij-bg:#1e1f22;
+  --ij-bg-editor:#1e1f22;
+  --ij-bg-dark:#18191c;
+  --ij-bg-darker:#131416;
+  --ij-bg-sel:#2e436e;
+  --ij-bg-hov:#2a2b2f;
+  --ij-border:#2e3035;
+  --ij-border-d:#26282d;
+  --ij-text:#bcbec4;
+  --ij-text-m:#70747d;
+  --ij-text-b:#dfe1e5;
+  --syn-kw:#cf8dfb;
+  --syn-type:#56a8f5;
+  --syn-method:#57aaf7;
+  --syn-str:#6aab73;
+  --syn-cmt:#7a7e85;
+  --syn-ann:#bbb529;
+  --syn-num:#2aacb8;
+  --ij-green:#369650;
+  --ij-green-l:#4dbb66;
+  --ij-blue:#3578e5;
+  --ij-blue-l:#5294e2;
+  --ij-red:#e74c3c;
+  --ij-yellow:#f5a623;
+  --ij-orange:#e06c75;
+  --f-ui:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  --f-code:'JetBrains Mono',monospace;
+}
 
-            --fg-primary: #ffffff;
-            --fg-secondary: #8e8e93;
-            --fg-muted: #52525b;
+html,body{width:100%;height:100%;background:#0e1013;overflow:hidden;font-family:var(--f-ui);user-select:none;color:var(--ij-text);}
 
-            --accent-red: #dc2626;
-            --accent-red-hover: #b91c1c;
+/* CANVAS FOR PARTICLE EXPLOSION */
+#particle-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;pointer-events:none;opacity:0;transition:opacity 0.3s;}
 
-            --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
+/* PORTFOLIO OVERLAY CONTAINER */
+#portfolio-overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:9998;opacity:0;pointer-events:none;transition:opacity 0.8s ease;background:#0a0a0a;}
+#portfolio-overlay.vis{opacity:1;pointer-events:all;}
+#portfolio-frame{width:100%;height:100%;border:none;}
 
-            --transition-fast: all 0.12s ease;
-            --transition-med: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; scroll-padding-top: 72px; }
-        body { font-family: var(--font-display); background-color: var(--bg-void); color: var(--fg-primary); line-height: 1.6; overflow-x: hidden; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-void); }
-        ::-webkit-scrollbar-thumb { background: var(--border-strong); }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent-red); }
+/* OS DESKTOP CONTAINER */
+#os-desktop{width:100%;height:100%;background:radial-gradient(ellipse at 80% 20%, #1a233a 0%, #10141f 45%, #0b0d13 100%);position:relative;display:flex;flex-direction:column;transition:opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);}
 
-        /* NAVBAR */
-        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; background: var(--bg-void); border-bottom: 1px solid var(--border-line); }
-        .nav-brand { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: var(--fg-primary); text-decoration: none; display: flex; align-items: center; gap: 10px; letter-spacing: -0.01em; }
-        .nav-dot { width: 6px; height: 6px; background: var(--accent-red); flex-shrink: 0; }
-        .nav-links { display: flex; list-style: none; gap: 0; }
-        .nav-links a { display: block; padding: 0.55rem 0.9rem; color: var(--fg-secondary); text-decoration: none; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; transition: var(--transition-fast); border-bottom: 1px solid transparent; }
-        .nav-links a:hover, .nav-links a.active { color: var(--fg-primary); border-bottom-color: var(--accent-red); }
-        .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
-        .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--fg-secondary); transition: var(--transition-fast); }
+/* macOS / SYSTEM TOP BAR */
+#macos-bar{height:26px;background:rgba(20,22,26,.88);backdrop-filter:blur(25px);display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:12px;color:rgba(255,255,255,.85);border-bottom:1px solid rgba(255,255,255,.05);flex-shrink:0;z-index:100;}
+.mb-left{display:flex;align-items:center;gap:14px;}
+.mb-item{cursor:pointer;padding:2px 6px;border-radius:3px;transition:background .15s;}
+.mb-item:hover{background:rgba(255,255,255,.12);color:#fff;}
+.mb-item.bold{font-weight:600;display:flex;align-items:center;gap:5px;}
+.mb-right{display:flex;align-items:center;gap:12px;font-size:11.5px;color:rgba(255,255,255,.75);}
+#macos-clock{min-width:92px;text-align:right;}
 
-        /* HERO */
-        #home { min-height: 100vh; display: flex; align-items: center; position: relative; border-bottom: 1px solid var(--border-line); }
-        .hero-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; width: 100%; display: grid; grid-template-columns: 1.2fr 0.8fr; align-items: center; gap: 0; padding-top: 64px; }
-        .hero-content { padding: 4rem 3rem 4rem 0; border-right: 1px solid var(--border-line); }
-        .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px; border: 1px solid var(--border-strong); font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-secondary); margin-bottom: 2rem; }
-        .hero-badge::before { content: ''; display: block; width: 6px; height: 6px; background: var(--accent-red); }
-        .hero-title { font-family: var(--font-display); font-size: clamp(2.6rem,5.5vw,4.2rem); font-weight: 700; line-height: 0.98; margin-bottom: 1.5rem; letter-spacing: -0.03em; text-transform: uppercase; }
-        .hero-title .name-accent { color: var(--accent-red); }
-        .hero-subtitle { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 500; color: var(--fg-secondary); margin-bottom: 1.5rem; min-height: 1.6rem; }
-        .typing-text { color: var(--fg-primary); }
-        .cursor { display: inline-block; width: 2px; height: 1em; background: var(--accent-red); margin-left: 2px; vertical-align: middle; animation: blink 1s step-end infinite; }
-        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-        .hero-description { color: var(--fg-secondary); font-size: 0.95rem; max-width: 540px; margin-bottom: 2.5rem; line-height: 1.8; }
-        .hero-stats { display: flex; margin-bottom: 2.5rem; border-top: 1px solid var(--border-line); border-bottom: 1px solid var(--border-line); }
-        .stat-item { text-align: left; padding: 1rem 1.5rem 1rem 0; margin-right: 1.5rem; }
-        .stat-number { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--fg-primary); display: block; }
-        .stat-label { font-family: var(--font-mono); font-size: 0.68rem; color: var(--fg-muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; }
-        .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
-        .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; background: var(--accent-red); color: var(--fg-primary); text-decoration: none; font-family: var(--font-mono); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; border: 1px solid var(--accent-red); transition: var(--transition-fast); cursor: pointer; }
-        .btn-primary:hover { background: var(--accent-red-hover); border-color: var(--accent-red-hover); color: #fff; }
-        .btn-secondary { display: inline-flex; align-items: center; gap: 8px; padding: 12px 26px; background: transparent; color: var(--fg-primary); text-decoration: none; font-family: var(--font-mono); font-weight: 500; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; border: 1px solid var(--border-strong); transition: var(--transition-fast); }
-        .btn-secondary:hover { border-color: var(--accent-red); color: var(--accent-red); }
-        .hero-socials { display: flex; gap: 0; border: 1px solid var(--border-line); width: fit-content; }
-        .social-icon { width: 42px; height: 42px; border-right: 1px solid var(--border-line); display: flex; align-items: center; justify-content: center; color: var(--fg-secondary); text-decoration: none; font-size: 1rem; transition: var(--transition-fast); }
-        .social-icon:last-child { border-right: none; }
-        .social-icon:hover { color: var(--accent-red); background: var(--bg-surface); }
+/* DESKTOP WORKSPACE */
+#desktop-content{flex:1;display:flex;padding:6px 10px 4px;overflow:hidden;position:relative;}
 
-        .hero-image-wrap { padding: 4rem 0 4rem 3rem; display: flex; flex-direction: column; align-items: center; }
-        .portrait-container { position: relative; width: 100%; max-width: 340px; aspect-ratio: 4 / 5; background-color: var(--bg-surface); border: 1px solid var(--border-line); overflow: hidden; }
-        .portrait-img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%) contrast(125%) brightness(90%); transition: filter 0.2s ease, transform 0.2s ease; }
-        .portrait-container:hover .portrait-img { filter: grayscale(100%) contrast(140%) brightness(100%); transform: scale(1.02); }
-        .portrait-badge { position: absolute; bottom: 12px; left: 12px; background: var(--bg-void); border: 1px solid var(--border-strong); color: var(--fg-primary); font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em; padding: 4px 8px; display: flex; align-items: center; gap: 6px; text-transform: uppercase; }
-        .portrait-badge::before { content: ''; display: block; width: 6px; height: 6px; background-color: var(--accent-red); }
-        .hero-tags { display: flex; flex-direction: column; gap: 0; width: 100%; max-width: 340px; margin-top: 1rem; border: 1px solid var(--border-line); }
-        .hero-tag-row { display: flex; align-items: center; gap: 8px; padding: 8px 12px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--fg-secondary); border-bottom: 1px solid var(--border-line); }
-        .hero-tag-row:last-child { border-bottom: none; }
-        .hero-tag-row i { color: var(--accent-red); width: 14px; }
+/* FLOATING NOTIFICATIONS (SLACK, GITHUB, JETBRAINS) */
+#notif-area{position:absolute;top:12px;right:16px;z-index:600;display:flex;flex-direction:column;gap:10px;pointer-events:none;}
+.toast{width:320px;background:rgba(24,26,31,.95);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 14px;display:flex;align-items:flex-start;gap:10px;backdrop-filter:blur(24px);transform:translateX(360px);transition:transform .4s cubic-bezier(.16,1,.3,1);box-shadow:0 10px 30px rgba(0,0,0,.6);pointer-events:auto;}
+.toast.show{transform:translateX(0);}
+.toast.hide{transform:translateX(360px);transition:transform .3s ease-in;}
+.t-icon{font-size:24px;flex-shrink:0;}
+.t-app{font-size:10.5px;color:var(--ij-text-m);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px;}
+.t-msg{font-size:12px;color:var(--ij-text-b);line-height:1.4;}
+.t-time{font-size:10px;color:var(--ij-text-m);margin-left:auto;white-space:nowrap;}
 
-        /* SECTIONS */
-        section { position: relative; padding: 90px 0; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-        .section-header { margin-bottom: 3.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-line); display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-        .section-tag { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; color: var(--fg-muted); text-transform: uppercase; letter-spacing: 0.08em; }
-        .section-title { font-family: var(--font-display); font-size: clamp(1.8rem,3.5vw,2.5rem); font-weight: 600; color: var(--fg-primary); letter-spacing: -0.02em; text-transform: uppercase; }
-        .section-title span { color: var(--accent-red); }
-        .section-alt { background: var(--bg-surface); border-top: 1px solid var(--border-line); border-bottom: 1px solid var(--border-line); }
-        .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.4s ease, transform 0.4s ease; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
+/* FLOATING QUICK LAUNCH BADGE */
+#quick-skip{position:absolute;bottom:75px;right:20px;z-index:400;display:flex;align-items:center;gap:8px;background:rgba(28,30,36,0.9);border:1px solid rgba(255,255,255,0.12);padding:7px 14px;border-radius:20px;color:var(--ij-text-b);font-size:12px;cursor:pointer;backdrop-filter:blur(15px);transition:all .2s ease;box-shadow:0 6px 20px rgba(0,0,0,0.4);}
+#quick-skip:hover{background:var(--ij-blue);color:#fff;border-color:transparent;transform:translateY(-2px);}
 
-        /* ABOUT */
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border-line); }
-        .about-text { padding: 2.5rem; border-right: 1px solid var(--border-line); }
-        .about-text p { color: var(--fg-secondary); margin-bottom: 1.2rem; line-height: 1.9; font-size: 0.95rem; }
-        .about-text strong { color: var(--fg-primary); font-weight: 600; }
-        .soft-skills-wrap { margin-top: 2rem; }
-        .soft-skills-wrap h4 { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-muted); margin-bottom: 1rem; }
-        .soft-skills { display: flex; flex-wrap: wrap; gap: 0; border: 1px solid var(--border-line); width: fit-content; }
-        .soft-badge { padding: 8px 14px; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; color: var(--fg-secondary); border-right: 1px solid var(--border-line); display: flex; align-items: center; gap: 6px; transition: var(--transition-fast); }
-        .soft-badge:last-child { border-right: none; }
-        .soft-badge:hover { color: var(--accent-red); background: var(--bg-void); }
-        .about-card { padding: 2.5rem; }
-        .about-info-item { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border-line); }
-        .about-info-item:last-child { border-bottom: none; }
-        .about-info-icon { width: 34px; height: 34px; border: 1px solid var(--border-line); display: flex; align-items: center; justify-content: center; color: var(--accent-red); flex-shrink: 0; font-size: 0.85rem; }
-        .about-info-content small { display: block; font-family: var(--font-mono); font-size: 0.68rem; color: var(--fg-muted); margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.06em; }
-        .about-info-content span { font-size: 0.92rem; color: var(--fg-primary); font-weight: 500; }
-        .about-info-content a { color: var(--fg-primary); text-decoration: none; font-size: 0.92rem; font-weight: 500; }
-        .about-info-content a:hover { color: var(--accent-red); }
+/* RUN PULSE CALL TO ACTION */
+#cta-hint{position:absolute;top:44px;left:450px;transform:translateX(-50%);background:rgba(22,25,32,.95);border:1px solid rgba(77,187,102,.5);color:#fff;padding:6px 14px;border-radius:20px;font-size:12px;display:flex;align-items:center;gap:8px;opacity:0;transition:opacity .4s ease, transform .4s ease;backdrop-filter:blur(12px);z-index:500;box-shadow:0 6px 24px rgba(0,0,0,.5);pointer-events:none;}
+#cta-hint.show{opacity:1;transform:translateX(-50%) translateY(4px);}
+.cta-run-icon{width:18px;height:18px;background:var(--ij-green);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;}
 
-        /* TIMELINE */
-        .timeline { position: relative; max-width: 900px; margin: 0 auto; border: 1px solid var(--border-line); }
-        .timeline-item { position: relative; }
-        .timeline-card { padding: 2.2rem; }
-        .timeline-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
-        .timeline-title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--fg-primary); }
-        .timeline-date { font-family: var(--font-mono); font-size: 0.75rem; color: var(--fg-secondary); border: 1px solid var(--border-line); padding: 4px 10px; white-space: nowrap; }
-        .timeline-org { color: var(--accent-red); font-weight: 500; font-family: var(--font-mono); font-size: 0.82rem; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.02em; }
-        .timeline-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-        .timeline-bullets li { color: var(--fg-secondary); font-size: 0.92rem; line-height: 1.6; padding-left: 20px; position: relative; }
-        .timeline-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--accent-red); }
-        .exp-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.4rem; }
-        .exp-badge { padding: 5px 12px; border: 1px solid var(--border-line); color: var(--fg-secondary); font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; }
+/* INTELLIJ MAIN WINDOW */
+#ij-win{width:100%;height:100%;background:var(--ij-bg);border-radius:8px 8px 0 0;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.08);position:relative;opacity:0;transform:scale(0.97) translateY(12px);transition:all 0.5s cubic-bezier(0.16, 1, 0.3, 1);}
+#ij-win.open{opacity:1;transform:scale(1) translateY(0);}
 
-        /* EDUCATION */
-        .edu-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); border: 1px solid var(--border-line); }
-        .edu-card { padding: 2rem; border-right: 1px solid var(--border-line); border-bottom: 1px solid var(--border-line); transition: var(--transition-fast); position: relative; }
-        .edu-card:last-child { border-right: none; }
-        .edu-card:hover { background: var(--bg-surface); }
-        .edu-icon { width: 44px; height: 44px; border: 1px solid var(--border-line); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; color: var(--accent-red); margin-bottom: 1.2rem; }
-        .edu-degree { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--fg-primary); margin-bottom: 0.5rem; line-height: 1.4; }
-        .edu-institution { color: var(--fg-secondary); font-family: var(--font-mono); font-weight: 500; font-size: 0.82rem; margin-bottom: 0.5rem; }
-        .edu-year { font-family: var(--font-mono); font-size: 0.75rem; color: var(--fg-muted); margin-bottom: 0.8rem; }
-        .edu-gpa { display: inline-block; padding: 4px 12px; border: 1px solid var(--border-strong); color: var(--fg-primary); font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; }
+/* INTELLIJ TOP WINDOW TITLEBAR */
+#ij-title{height:38px;background:var(--ij-bg-dark);display:flex;align-items:center;padding:0 12px;gap:12px;flex-shrink:0;border-bottom:1px solid var(--ij-border-d);}
+.wc{display:flex;gap:7px;align-items:center;}
+.wc-btn{width:12px;height:12px;border-radius:50%;cursor:pointer;transition:filter .15s;}
+.wc-btn.cl{background:#ff5f57;} .wc-btn.mn{background:#febc2e;} .wc-btn.mx{background:#28c840;}
+.wc-btn:hover{filter:brightness(1.15);}
+.ij-logo-pill{display:flex;align-items:center;gap:6px;padding:3px 9px;border-radius:4px;background:rgba(255,255,255,.05);font-size:11.5px;color:var(--ij-text-b);font-weight:600;}
+.ij-logo-pill span.badge{background:#e06c75;color:#fff;font-size:9px;padding:1px 5px;border-radius:3px;font-weight:700;}
+.win-title{flex:1;text-align:center;font-size:12px;color:var(--ij-text-m);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 
-        /* SKILLS */
-        .skills-container { display: grid; grid-template-columns: repeat(auto-fit,minmax(340px,1fr)); border: 1px solid var(--border-line); }
-        .skill-group { padding: 1.8rem; border-right: 1px solid var(--border-line); border-bottom: 1px solid var(--border-line); transition: var(--transition-fast); }
-        .skill-group:hover { background: var(--bg-surface); }
-        .skill-group-title { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-muted); margin-bottom: 1.2rem; }
-        .skill-group-title i { color: var(--accent-red); }
-        .skill-pills { display: flex; flex-wrap: wrap; gap: 8px; }
-        .skill-pill { padding: 6px 12px; border: 1px solid var(--border-line); font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; color: var(--fg-secondary); transition: var(--transition-fast); cursor: default; }
-        .skill-pill:hover { border-color: var(--accent-red); color: var(--fg-primary); }
+/* INTELLIJ MAIN TOOLBAR */
+#ij-toolbar{height:40px;background:var(--ij-bg);display:flex;align-items:center;padding:0 10px;gap:6px;flex-shrink:0;border-bottom:1px solid var(--ij-border);}
+.tb-pill{display:flex;align-items:center;gap:6px;padding:4px 10px;border-radius:4px;font-size:12px;color:var(--ij-text);cursor:pointer;transition:background .1s;}
+.tb-pill:hover{background:var(--ij-bg-hov);color:var(--ij-text-b);}
+.tb-branch{color:#76b9ed;font-family:var(--f-code);font-size:11.5px;display:flex;align-items:center;gap:5px;}
+.tb-sep{width:1px;height:20px;background:var(--ij-border);margin:0 4px;}
 
-        /* PROJECTS — editorial index/table rows */
-        .projects-list { border: 1px solid var(--border-line); }
-        .project-row { display: grid; grid-template-columns: 70px 1fr auto; align-items: start; gap: 1.5rem; padding: 1.8rem 1.5rem; border-bottom: 1px solid var(--border-line); background: transparent; transition: background-color 0.15s ease, padding-left 0.15s ease; }
-        .project-row:last-child { border-bottom: none; }
-        .project-row:hover { background-color: var(--bg-surface); padding-left: 2rem; }
-        .project-index { font-family: var(--font-mono); color: var(--fg-muted); font-size: 0.85rem; padding-top: 3px; }
-        .project-main { min-width: 0; }
-        .project-name-row { display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem; flex-wrap: wrap; }
-        .project-name { font-family: var(--font-display); color: var(--fg-primary); font-size: 1.15rem; font-weight: 700; transition: color 0.15s ease; }
-        .project-row:hover .project-name { color: var(--accent-red); }
-        .project-type-badge { font-family: var(--font-mono); font-size: 0.68rem; color: var(--fg-muted); border: 1px solid var(--border-line); padding: 2px 8px; text-transform: uppercase; letter-spacing: 0.04em; }
-        .project-desc { color: var(--fg-secondary); font-size: 0.88rem; line-height: 1.7; max-width: 640px; }
-        .project-stack { display: flex; flex-wrap: wrap; gap: 6px; align-self: start; justify-content: flex-end; max-width: 220px; }
-        .stack-tag { padding: 3px 9px; border: 1px solid var(--border-line); color: var(--fg-muted); font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500; }
+/* RUN CONFIGURATION WIDGET */
+.run-config{display:flex;align-items:center;gap:8px;padding:4px 10px;background:var(--ij-bg-dark);border:1px solid var(--ij-border);border-radius:5px;font-size:12px;color:var(--ij-text-b);cursor:pointer;transition:border-color .15s;}
+.run-config:hover{border-color:var(--ij-blue-l);}
+.spring-icon{color:#6db33f;font-size:12px;}
+.run-btn-main{width:30px;height:28px;background:var(--ij-green);border:none;border-radius:5px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:11px;transition:all .15s ease;outline:none;}
+.run-btn-main:hover{background:var(--ij-green-l);transform:scale(1.05);box-shadow:0 0 16px rgba(54,150,80,.6);}
+.run-btn-main:active{transform:scale(.95);}
+.run-btn-main.pulse{animation:pulseGreen 1.4s infinite ease-in-out;}
+@keyframes pulseGreen{0%,100%{box-shadow:0 0 0 0 rgba(77,187,102,.7);}50%{box-shadow:0 0 0 10px rgba(77,187,102,0);}}
 
-        /* ACTIVITIES */
-        .activities-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); border: 1px solid var(--border-line); max-width: 960px; margin: 0 auto; }
-        .activity-card { padding: 1.8rem; border-right: 1px solid var(--border-line); transition: var(--transition-fast); }
-        .activity-card:last-child { border-right: none; }
-        .activity-card:hover { background: var(--bg-surface); }
-        .activity-icon { width: 46px; height: 46px; border: 1px solid var(--border-line); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 1rem; color: var(--accent-red); }
-        .activity-role { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: var(--fg-primary); margin-bottom: 0.3rem; }
-        .activity-org { color: var(--fg-secondary); font-family: var(--font-mono); font-size: 0.8rem; font-weight: 500; margin-bottom: 0.3rem; }
-        .activity-year { color: var(--fg-muted); font-family: var(--font-mono); font-size: 0.72rem; }
-        .activity-desc { margin-top: 0.9rem; color: var(--fg-secondary); font-size: 0.85rem; line-height: 1.6; }
+.tb-icon-btn{width:28px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ij-text);font-size:12.5px;transition:background .1s,color .1s;}
+.tb-icon-btn:hover{background:var(--ij-bg-hov);color:var(--ij-text-b);}
+.tb-right{margin-left:auto;display:flex;align-items:center;gap:4px;}
 
-        /* CONTACT */
-        .contact-layout { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--border-line); max-width: 960px; margin: 0 auto; }
-        .contact-info-card { padding: 2.2rem; border-right: 1px solid var(--border-line); }
-        .contact-info-card h3 { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-muted); margin-bottom: 1.5rem; }
-        .contact-item { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border-line); }
-        .contact-item:last-child { border-bottom: none; }
-        .contact-item-icon { width: 34px; height: 34px; border: 1px solid var(--border-line); display: flex; align-items: center; justify-content: center; color: var(--accent-red); flex-shrink: 0; font-size: 0.85rem; }
-        .contact-item a { color: var(--fg-secondary); text-decoration: none; font-size: 0.88rem; transition: color 0.15s; word-break: break-all; }
-        .contact-item a:hover { color: var(--accent-red); }
-        .contact-item span { color: var(--fg-secondary); font-size: 0.88rem; }
-        .ref-section-title { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-muted); padding: 2.2rem 2.2rem 1.5rem; }
-        .references-grid { display: flex; flex-direction: column; }
-        .reference-card { padding: 1.2rem 2.2rem; border-top: 1px solid var(--border-line); transition: var(--transition-fast); }
-        .reference-card:hover { background: var(--bg-void); }
-        .reference-name { font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; color: var(--fg-primary); margin-bottom: 0.25rem; }
-        .reference-title { color: var(--fg-secondary); font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; margin-bottom: 0.6rem; }
-        .reference-contacts { display: flex; flex-direction: column; gap: 4px; }
-        .reference-contact { display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--fg-muted); }
-        .reference-contact i { color: var(--accent-red); font-size: 0.7rem; width: 14px; }
+/* MAIN BODY AREA */
+#ij-body{flex:1;display:flex;overflow:hidden;min-height:0;background:var(--ij-bg);}
 
-        /* FOOTER */
-        footer { background: var(--bg-void); border-top: 1px solid var(--border-line); padding: 2rem 0; text-align: center; }
-        footer p { color: var(--fg-muted); font-family: var(--font-mono); font-size: 0.78rem; }
-        footer a { color: var(--fg-secondary); text-decoration: none; }
-        footer a:hover { color: var(--accent-red); }
+/* ACTIVITY BAR (LEFT VERTICAL) */
+#activity-bar{width:42px;background:var(--ij-bg-darker);display:flex;flex-direction:column;align-items:center;padding:8px 0;gap:4px;border-right:1px solid var(--ij-border);flex-shrink:0;}
+.ab-btn{width:32px;height:32px;border-radius:5px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ij-text-m);font-size:13.5px;transition:all .15s;position:relative;}
+.ab-btn:hover{color:var(--ij-text-b);background:var(--ij-bg-hov);}
+.ab-btn.act{color:var(--ij-text-b);background:var(--ij-bg-sel);}
+.ab-sep{width:20px;height:1px;background:var(--ij-border-d);margin:4px 0;}
+.ab-bottom{margin-top:auto;}
+.ab-btn[data-tip]:hover::after{content:attr(data-tip);position:absolute;left:calc(100% + 8px);top:50%;transform:translateY(-50%);background:#23252a;border:1px solid var(--ij-border);color:#fff;font-size:11px;padding:3px 8px;border-radius:4px;white-space:nowrap;z-index:999;box-shadow:0 4px 14px rgba(0,0,0,.5);pointer-events:none;}
 
-        /* SCROLL TOP */
-        #scrollTop { position: fixed; bottom: 2rem; right: 2rem; width: 42px; height: 42px; background: var(--accent-red); border: 1px solid var(--accent-red); color: white; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(8px); transition: var(--transition-fast); z-index: 999; }
-        #scrollTop.visible { opacity: 1; transform: translateY(0); }
-        #scrollTop:hover { background: var(--accent-red-hover); border-color: var(--accent-red-hover); }
+/* PROJECT EXPLORER TREE */
+#project-panel{width:245px;background:var(--ij-bg-dark);display:flex;flex-direction:column;border-right:1px solid var(--ij-border);flex-shrink:0;overflow:hidden;}
+.panel-header{height:30px;display:flex;align-items:center;padding:0 10px;font-size:12px;font-weight:600;color:var(--ij-text-b);border-bottom:1px solid var(--ij-border-d);gap:6px;}
+.ph-actions{margin-left:auto;display:flex;gap:2px;}
+.ph-btn{width:18px;height:18px;border-radius:3px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ij-text-m);font-size:10.5px;}
+.ph-btn:hover{color:var(--ij-text-b);background:var(--ij-bg-hov);}
+#tree-content{flex:1;overflow-y:auto;font-size:12px;padding:4px 0;}
+#tree-content::-webkit-scrollbar{width:4px;}
+#tree-content::-webkit-scrollbar-thumb{background:var(--ij-border);border-radius:2px;}
 
-        /* RESPONSIVE */
-        @media (max-width: 1024px) {
-            .hero-container { grid-template-columns: 1fr; }
-            .hero-content { border-right: none; border-bottom: 1px solid var(--border-line); padding: 3rem 0 2.5rem; text-align: center; }
-            .hero-badge, .hero-title, .hero-subtitle, .hero-description { margin-left: auto; margin-right: auto; }
-            .hero-stats { justify-content: center; }
-            .hero-cta { justify-content: center; }
-            .hero-socials { margin: 0 auto; }
-            .hero-image-wrap { padding: 2.5rem 0; align-items: center; }
-            .about-grid { grid-template-columns: 1fr; }
-            .about-text { border-right: none; border-bottom: 1px solid var(--border-line); }
-        }
-        @media (max-width: 768px) {
-            .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--bg-void); border-top: 1px solid var(--border-line); border-bottom: 1px solid var(--border-line); padding: 0.5rem 0; }
-            .nav-links.open { display: flex; }
-            .nav-toggle { display: flex; }
-            .contact-layout { grid-template-columns: 1fr; }
-            .contact-info-card { border-right: none; border-bottom: 1px solid var(--border-line); }
-            .project-row { grid-template-columns: 40px 1fr; }
-            .project-stack { grid-column: 1 / -1; justify-content: flex-start; max-width: none; margin-top: 0.5rem; }
-            section { padding: 60px 0; }
-        }
-        @media (max-width: 480px) {
-            .hero-stats { flex-wrap: wrap; }
-            .stat-number { font-size: 1.6rem; }
-            .about-text, .about-card { padding: 1.8rem; }
-        }
-    </style>
+.tree-row{display:flex;align-items:center;height:23px;padding-right:8px;cursor:pointer;color:var(--ij-text);gap:4px;white-space:nowrap;transition:background .1s;}
+.tree-row:hover{background:var(--ij-bg-hov);color:var(--ij-text-b);}
+.tree-row.act{background:var(--ij-bg-sel);color:#fff;}
+.tree-arrow{width:14px;font-size:8px;color:var(--ij-text-m);text-align:center;flex-shrink:0;}
+.tree-icon{font-size:12px;width:16px;text-align:center;flex-shrink:0;}
+.tree-label{flex:1;overflow:hidden;text-overflow:ellipsis;}
+.tree-icon.java{color:#f89820;}
+.tree-icon.folder{color:#dfb158;}
+.tree-icon.xml{color:#e06c75;}
+.tree-icon.props{color:#8bc34a;}
+.tree-icon.docker{color:#2496ed;}
+
+/* CENTER WORKSPACE: CODE EDITOR + BOTTOM RUN/SERVICES */
+#center-workspace{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--ij-bg-editor);}
+
+/* TABS ROW */
+#editor-tabs{height:32px;background:var(--ij-bg-darker);display:flex;align-items:flex-end;border-bottom:1px solid var(--ij-border);overflow-x:auto;flex-shrink:0;}
+#editor-tabs::-webkit-scrollbar{display:none;}
+.tab-item{height:29px;display:flex;align-items:center;padding:0 12px;gap:6px;font-size:12px;color:var(--ij-text-m);cursor:pointer;white-space:nowrap;border-right:1px solid var(--ij-border-d);border-top:2px solid transparent;background:var(--ij-bg-dark);transition:all .1s;}
+.tab-item:hover{background:var(--ij-bg);color:var(--ij-text);}
+.tab-item.act{background:var(--ij-bg);color:var(--ij-text-b);border-top-color:var(--ij-blue);}
+.tab-close{width:14px;height:14px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--ij-text-m);opacity:0;transition:opacity .1s;}
+.tab-item:hover .tab-close{opacity:1;}
+.tab-close:hover{background:rgba(255,255,255,.1);color:#fff;}
+.tab-dot{width:6px;height:6px;background:var(--ij-yellow);border-radius:50%;}
+
+/* BREADCRUMB BAR */
+#breadcrumb-bar{height:24px;background:var(--ij-bg);border-bottom:1px solid var(--ij-border-d);display:flex;align-items:center;padding:0 12px;font-size:11px;color:var(--ij-text-m);gap:6px;flex-shrink:0;}
+.bc-item{cursor:pointer;}
+.bc-item:hover{color:var(--ij-text-b);}
+.bc-item.act{color:var(--ij-text-b);font-weight:500;}
+
+/* CODE EDITOR CONTAINER */
+#code-viewport{flex:1;display:flex;overflow:hidden;position:relative;background:var(--ij-bg-editor);}
+#line-numbers{width:48px;background:var(--ij-bg-editor);padding:14px 10px 14px 0;font-family:var(--f-code);font-size:12.5px;line-height:21px;color:var(--ij-text-m);text-align:right;flex-shrink:0;border-right:1px solid var(--ij-border-d);user-select:none;}
+#gutter-col{width:18px;background:var(--ij-bg-editor);padding-top:14px;flex-shrink:0;position:relative;}
+#code-text{flex:1;padding:14px 16px 40px 4px;font-family:var(--f-code);font-size:12.5px;line-height:21px;color:var(--ij-text);overflow:auto;white-space:pre;tab-size:4;outline:none;}
+#code-text::-webkit-scrollbar{width:6px;height:6px;}
+#code-text::-webkit-scrollbar-thumb{background:var(--ij-border);border-radius:3px;}
+
+/* SYNTAX HIGHLIGHTING CLASSES */
+.kw{color:var(--syn-kw);font-weight:600;}
+.type{color:var(--syn-type);}
+.method{color:var(--syn-method);}
+.str{color:var(--syn-str);}
+.cmt{color:var(--syn-cmt);font-style:italic;}
+.ann{color:var(--syn-ann);}
+.num{color:var(--syn-num);}
+.plain{color:var(--ij-text);}
+.code-cursor{display:inline-block;width:2px;height:14px;background:var(--ij-blue-l);vertical-align:text-bottom;animation:blink 1s step-end infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+
+/* DEBUG BREAKPOINT */
+.breakpoint{width:12px;height:12px;border-radius:50%;background:#e05252;position:absolute;left:3px;box-shadow:0 0 8px rgba(224,82,82,.8);cursor:pointer;transition:transform .2s;}
+.breakpoint:hover{transform:scale(1.2);}
+
+/* INTELLISENSE POPUP */
+#autocomplete-box{position:absolute;background:#2b2d30;border:1px solid #43454a;border-radius:6px;width:320px;z-index:200;display:none;box-shadow:0 8px 24px rgba(0,0,0,.6);overflow:hidden;}
+.ac-row{display:flex;align-items:center;gap:8px;padding:5px 10px;font-family:var(--f-code);font-size:12px;color:var(--ij-text);cursor:pointer;}
+.ac-row:hover,.ac-row.sel{background:var(--ij-bg-sel);color:#fff;}
+.ac-icon{font-size:11px;width:16px;}
+.ac-match{color:#fff;font-weight:600;}
+.ac-pkg{margin-left:auto;font-size:10px;color:var(--ij-text-m);}
+
+/* AI ASSISTANT PANEL (RIGHT SIDEBAR) */
+#ai-sidebar{width:220px;background:var(--ij-bg-dark);border-left:1px solid var(--ij-border);display:flex;flex-direction:column;flex-shrink:0;overflow:hidden;}
+.ai-header{height:30px;border-bottom:1px solid var(--ij-border-d);display:flex;align-items:center;padding:0 10px;gap:6px;font-size:12px;font-weight:600;color:var(--ij-text-b);}
+.ai-tag{font-size:9.5px;background:rgba(82,148,226,.2);color:var(--ij-blue-l);padding:1px 5px;border-radius:3px;margin-left:auto;font-weight:700;}
+#ai-body{flex:1;padding:12px;overflow-y:auto;font-size:11.5px;color:var(--ij-text-m);}
+.ai-card{background:rgba(255,255,255,.03);border:1px solid var(--ij-border);border-radius:6px;padding:10px;margin-bottom:10px;transition:border-color .15s;}
+.ai-card:hover{border-color:rgba(255,255,255,.15);}
+.ai-badge{font-size:9.5px;color:var(--ij-blue-l);font-weight:700;text-transform:uppercase;margin-bottom:4px;}
+.ai-code-block{font-family:var(--f-code);font-size:11px;color:#6aab73;background:rgba(0,0,0,.3);padding:4px 6px;border-radius:4px;margin-top:6px;}
+
+/* BOTTOM SERVICES / RUN PANEL MATCHING sample_intellijidea_ss.png */
+#bottom-panel{height:190px;background:var(--ij-bg-dark);border-top:1px solid var(--ij-border);display:flex;flex-direction:column;flex-shrink:0;overflow:hidden;position:relative;}
+#bottom-tabs-bar{height:28px;display:flex;align-items:center;border-bottom:1px solid var(--ij-border-d);padding:0 6px;background:var(--ij-bg-darker);flex-shrink:0;}
+.bot-tab{padding:0 12px;height:28px;display:flex;align-items:center;font-size:11.5px;color:var(--ij-text-m);cursor:pointer;border-bottom:2px solid transparent;transition:all .1s;gap:5px;white-space:nowrap;}
+.bot-tab:hover{color:var(--ij-text);}
+.bot-tab.act{color:var(--ij-text-b);border-bottom-color:var(--ij-blue);}
+.tab-counter{background:var(--ij-border);color:var(--ij-text-b);font-size:9px;padding:1px 5px;border-radius:8px;}
+
+#bottom-views{flex:1;overflow:hidden;position:relative;}
+.bot-view{display:none;height:100%;overflow:auto;font-family:var(--f-code);font-size:12px;padding:8px 12px;line-height:1.6;}
+.bot-view::-webkit-scrollbar{width:4px;}
+.bot-view::-webkit-scrollbar-thumb{background:var(--ij-border);}
+.bot-view.act{display:block;}
+
+/* SERVICES TREE VIEW (LIKE SAMPLE SCREENSHOT) */
+#view-services.act{display:grid;grid-template-columns:220px 1fr;height:100%;padding:0;}
+.svc-tree{background:var(--ij-bg-darker);border-right:1px solid var(--ij-border);padding:8px 6px;overflow-y:auto;font-family:var(--f-ui);font-size:12px;}
+.svc-group-title{color:var(--ij-text-b);font-weight:600;font-size:11.5px;display:flex;align-items:center;gap:6px;margin-bottom:6px;padding:3px 6px;}
+.svc-item{display:flex;align-items:center;gap:6px;padding:4px 8px;border-radius:4px;cursor:pointer;color:var(--ij-text);font-size:11.5px;transition:background .1s;}
+.svc-item:hover{background:var(--ij-bg-hov);color:var(--ij-text-b);}
+.svc-item.act{background:var(--ij-bg-sel);color:#fff;}
+.svc-actions-bar{display:flex;align-items:center;gap:8px;padding:6px 12px;border-bottom:1px solid var(--ij-border-d);background:var(--ij-bg-dark);font-family:var(--f-ui);font-size:11.5px;}
+.svc-run-trigger{display:flex;align-items:center;gap:5px;background:rgba(54,150,80,.15);border:1px solid rgba(54,150,80,.3);color:#4dbb66;padding:3px 10px;border-radius:4px;cursor:pointer;font-weight:600;}
+.svc-run-trigger:hover{background:var(--ij-green);color:#fff;}
+
+.svc-list-panel{padding:8px 14px;overflow-y:auto;font-family:var(--f-ui);font-size:12px;}
+.svc-grid-row{display:flex;align-items:center;gap:10px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.svc-chk{accent-color:var(--ij-blue);}
+.svc-status-pill{font-size:10.5px;padding:2px 7px;border-radius:3px;margin-left:auto;}
+.svc-status-pill.running{background:rgba(74,222,128,.15);color:#4ade80;}
+.svc-status-pill.stopped{background:rgba(255,255,255,.06);color:var(--ij-text-m);}
+
+/* RUN CONSOLE STYLES */
+.c-spring-logo{color:#6db33f;font-weight:700;line-height:1.25;}
+.c-info{color:#4ade80;}
+.c-warn{color:var(--ij-yellow);}
+.c-muted{color:var(--ij-text-m);}
+.c-highlight{color:#fff;font-weight:600;}
+
+/* IN-IDE BROWSER POPUP PREVIEW */
+#ide-browser-strip{position:absolute;bottom:0;left:0;right:0;height:0;background:#1e1f22;border-top:2px solid var(--ij-green);transition:height .45s cubic-bezier(.16,1,.3,1);z-index:300;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 -10px 40px rgba(0,0,0,.7);}
+#ide-browser-strip.open{height:100%;}
+.ib-nav{height:34px;background:#26282d;display:flex;align-items:center;padding:0 12px;gap:8px;border-bottom:1px solid var(--ij-border);flex-shrink:0;}
+.ib-url{flex:1;max-width:480px;height:24px;background:#18191c;border:1px solid var(--ij-border);border-radius:12px;display:flex;align-items:center;padding:0 10px;font-size:11.5px;color:#a5d6a7;gap:6px;}
+.ib-btn{background:transparent;border:none;color:var(--ij-text-m);cursor:pointer;font-size:11px;padding:4px;}
+.ib-btn:hover{color:#fff;}
+.ib-expand-btn{margin-left:auto;background:var(--ij-green);color:#fff;border:none;border-radius:4px;padding:4px 14px;font-size:11.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .15s;}
+.ib-expand-btn:hover{background:var(--ij-green-l);transform:scale(1.04);}
+.ib-viewport{flex:1;position:relative;background:#000;}
+#ib-frame{width:100%;height:100%;border:none;}
+
+/* STATUS BAR (BOTTOM) */
+#status-bar{height:24px;background:#131416;display:flex;align-items:center;padding:0 8px;font-size:11px;color:var(--ij-text-m);border-top:1px solid var(--ij-border);flex-shrink:0;}
+.sb-item{padding:0 8px;height:100%;display:flex;align-items:center;gap:4px;cursor:pointer;transition:background .1s;}
+.sb-item:hover{background:rgba(255,255,255,.05);color:var(--ij-text-b);}
+#sb-status-msg{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;}
+#sb-progress-wrap{width:100px;height:4px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden;display:none;}
+#sb-progress-bar{height:100%;width:0;background:var(--ij-blue-l);transition:width .15s ease;}
+.sb-right{margin-left:auto;display:flex;align-items:center;}
+
+/* BOTTOM macOS DOCK */
+#dock-container{height:54px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.dock{background:rgba(30,32,38,.5);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:4px 10px;display:flex;align-items:center;gap:6px;}
+.dock-app{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;transition:transform .2s cubic-bezier(.34,1.56,.64,1);position:relative;}
+.dock-app:hover{transform:scale(1.35) translateY(-5px);}
+.dock-app.act::after{content:'';position:absolute;bottom:-3px;left:50%;transform:translateX(-50%);width:4px;height:4px;background:rgba(255,255,255,.8);border-radius:50%;}
+.dock-sep{width:1px;height:24px;background:rgba(255,255,255,.1);margin:0 4px;}
+
+/* CONTEXT MENU */
+#context-menu{position:fixed;background:#2b2d30;border:1px solid #43454a;border-radius:6px;padding:4px 0;z-index:9000;min-width:190px;display:none;box-shadow:0 8px 24px rgba(0,0,0,.6);font-size:12px;}
+.cm-row{padding:5px 14px;color:var(--ij-text);cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.cm-row:hover{background:var(--ij-bg-sel);color:#fff;}
+.cm-shortcut{font-size:10.5px;color:var(--ij-text-m);}
+.cm-sep{height:1px;background:var(--ij-border-d);margin:3px 0;}
+
+/* RESPONSIVE ADAPTATIONS */
+@media(max-width:1024px){#ai-sidebar{display:none;}}
+@media(max-width:768px){#project-panel{display:none;}#dock-container{display:none;}#cta-hint{left:50%;top:50px;}}
+</style>
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav id="navbar">
-    <a href="#home" class="nav-brand">
-        <div class="nav-dot"></div>
-        Pawan&nbsp;Bulathwaththa
-    </a>
-    <ul class="nav-links" id="navLinks">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#activities">Activities</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-    </button>
-</nav>
+<!-- CANVAS FOR EXPLOSIVE PARTICLES -->
+<canvas id="particle-canvas"></canvas>
 
-<!-- HERO -->
-<section id="home">
-    <div class="hero-container">
-        <div class="hero-content">
-            <div class="hero-badge">Available for opportunities</div>
-            <h1 class="hero-title">Hi, I am<br><span class="name-accent">Pawan Bulathwaththa</span></h1>
-            <p class="hero-subtitle"><span class="typing-text" id="typingText"></span><span class="cursor"></span></p>
-            <p class="hero-description">Detail-oriented Full Stack Developer with hands-on experience engineering scalable web applications, automated CI/CD pipelines, and secure containerized infrastructure. Proficient in Java (Spring Boot), Next.js, TypeScript, and identity management with OAuth 2.0 and Keycloak.</p>
-            <div class="hero-stats">
-                <div class="stat-item"><span class="stat-number" data-target="9">0</span><span class="stat-label">Projects</span></div>
-                <div class="stat-item"><span class="stat-number" data-target="6">0</span><span class="stat-label">Months Exp.</span></div>
-                <div class="stat-item"><span class="stat-number" data-target="15">0</span><span class="stat-label">Technologies</span></div>
-            </div>
-            <div class="hero-cta">
-                <a href="Pawan_Bulathwaththa_CV.pdf" download class="btn-primary"><i class="fas fa-download"></i><span>Download CV</span></a>
-                <a href="#contact" class="btn-secondary"><i class="fas fa-paper-plane"></i> Get In Touch</a>
-            </div>
-            <div class="hero-socials">
-                <a href="https://github.com/PawanBulathwaththa" target="_blank" class="social-icon" id="hero-github" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/pawan-bulathwaththa-99a51733b" target="_blank" class="social-icon" id="hero-linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="mailto:pawanbulatwaththa@gmail.com" class="social-icon" id="hero-email" title="Email"><i class="fas fa-envelope"></i></a>
-                <a href="tel:+94717524985" class="social-icon" id="hero-phone" title="Phone"><i class="fas fa-phone"></i></a>
-            </div>
-        </div>
-        <div class="hero-image-wrap">
-            <div class="portrait-container">
-                <img src="myphoto.png" alt="Pawan Bulathwaththa - Full Stack Developer" class="portrait-img">
-                <div class="portrait-badge">Available for work</div>
-            </div>
-            <div class="hero-tags">
-                <div class="hero-tag-row"><i class="fas fa-check-circle"></i> DvTechLabs Trainee SE</div>
-                <div class="hero-tag-row"><i class="fas fa-graduation-cap"></i> Coventry University</div>
-            </div>
-        </div>
+<!-- PORTFOLIO DESTINATION OVERLAY (EMBEDS index2.html) -->
+<div id="portfolio-overlay">
+  <iframe id="portfolio-frame" src="index2.html" title="Pawan Bulathwaththa Portfolio"></iframe>
+</div>
+
+<!-- OS WORKSTATION DESKTOP -->
+<div id="os-desktop">
+
+  <!-- macOS Top Menu Bar -->
+  <div id="macos-bar">
+    <div class="mb-left">
+      <span class="mb-item" style="font-size:14px;">🍎</span>
+      <span class="mb-item bold">
+        <i class="fas fa-cube" style="color:#f89820;font-size:11px;"></i>
+        IntelliJ IDEA
+      </span>
+      <span class="mb-item">File</span>
+      <span class="mb-item">Edit</span>
+      <span class="mb-item">View</span>
+      <span class="mb-item">Navigate</span>
+      <span class="mb-item">Code</span>
+      <span class="mb-item">Refactor</span>
+      <span class="mb-item">Build</span>
+      <span class="mb-item">Run</span>
+      <span class="mb-item">Tools</span>
+      <span class="mb-item">Git</span>
+      <span class="mb-item">Window</span>
+      <span class="mb-item">Help</span>
     </div>
-</section>
+    <div class="mb-right">
+      <span><i class="fas fa-wifi"></i></span>
+      <span><i class="fas fa-battery-full"></i> 100%</span>
+      <span id="macos-clock">Mon Oct 20 01:15</span>
+    </div>
+  </div>
 
-<!-- ABOUT -->
-<section id="about" class="section-alt">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-tag">01 / About Me</span>
-            <h2 class="section-title">Who I <span>Am</span></h2>
+  <!-- Desktop Workspace Area -->
+  <div id="desktop-content">
+
+    <!-- Floating System Notifications Area -->
+    <div id="notif-area"></div>
+
+    <!-- Quick Direct Launch / Recruiter Button -->
+    <div id="quick-skip" onclick="launchPortfolioDirect()" title="Jump straight into full portfolio">
+      <i class="fas fa-bolt" style="color:#f5a623;"></i>
+      <span>Fast Track to Portfolio</span>
+    </div>
+
+    <!-- Call to Action Bubble Pointing to Run Button -->
+    <div id="cta-hint">
+      <div class="cta-run-icon"><i class="fas fa-play"></i></div>
+      <span>Click <strong style="color:#4dbb66;">▶ Run</strong> to launch Spring Boot &amp; view portfolio</span>
+    </div>
+
+    <!-- INTELLIJ IDEA MAIN WINDOW -->
+    <div id="ij-win">
+
+      <!-- Window Title Bar -->
+      <div id="ij-title">
+        <div class="wc">
+          <div class="wc-btn cl" onclick="animateWinClose()" title="Close Window"></div>
+          <div class="wc-btn mn" onclick="animateWinMin()" title="Minimize Window"></div>
+          <div class="wc-btn mx" title="Zoom"></div>
         </div>
-        <div class="about-grid">
-            <div class="about-text reveal">
-                <p>I am a passionate Full Stack Developer with a strong academic foundation from <strong>Coventry University (BSc Hons Computer Science)</strong> and NIBM City University. My internship at <strong>DvTechLabs (Pvt Ltd)</strong> in Colombo gave me real-world experience building production-grade SaaS and e-commerce platforms.</p>
-                <p>I specialize in end-to-end development from crafting responsive frontends with Next.js and TypeScript to engineering robust backends with Spring Boot and PostgreSQL. I am deeply interested in DevOps practices, containerization with Docker, and CI/CD automation.</p>
-                <p>I am eager to apply my skills in innovative environments, contribute to impactful projects, and continue growing as an engineer.</p>
-                <div class="soft-skills-wrap">
-                    <h4>Soft Skills</h4>
-                    <div class="soft-skills">
-                        <span class="soft-badge"><i class="fas fa-lightbulb"></i> Problem Solving</span>
-                        <span class="soft-badge"><i class="fas fa-brain"></i> Analytical Thinking</span>
-                        <span class="soft-badge"><i class="fas fa-crown"></i> Leadership</span>
-                        <span class="soft-badge"><i class="fas fa-users"></i> Team Work</span>
+        <div class="ij-logo-pill">
+          <i class="fas fa-cube" style="color:#f89820;"></i>
+          <span>pawan-portfolio</span>
+          <span class="badge">SPRING BOOT 3</span>
+        </div>
+        <div class="win-title">PawanPortfolioApplication.java — [pawan-portfolio] — IntelliJ IDEA 2024.2</div>
+      </div>
+
+      <!-- Main Toolbar -->
+      <div id="ij-toolbar">
+        <div class="tb-pill tb-branch" title="Git current branch">
+          <i class="fas fa-code-branch"></i>
+          <span>main</span>
+          <i class="fas fa-chevron-down" style="font-size:9px;color:var(--ij-text-m);"></i>
+        </div>
+        <div class="tb-sep"></div>
+
+        <!-- Run Configuration Dropdown -->
+        <div class="run-config" title="Run Configuration">
+          <i class="fas fa-leaf spring-icon"></i>
+          <span>PawanPortfolioApplication</span>
+          <i class="fas fa-chevron-down" style="font-size:8px;color:var(--ij-text-m);margin-left:4px;"></i>
+        </div>
+
+        <!-- THE RUN BUTTON (MAIN TRIGGER) -->
+        <button id="main-run-btn" class="run-btn-main pulse" onclick="executeSpringBootRun()" title="Run 'PawanPortfolioApplication' (Shift+F10)">
+          <i class="fas fa-play"></i>
+        </button>
+
+        <div class="tb-icon-btn" onclick="executeDebugRun()" title="Debug 'PawanPortfolioApplication' (Shift+F9)">
+          <i class="fas fa-bug" style="color:#e06c75;"></i>
+        </div>
+        <div class="tb-icon-btn" title="Build Project (Ctrl+F9)">
+          <i class="fas fa-hammer"></i>
+        </div>
+        <div class="tb-icon-btn" title="Stop" style="opacity:0.4;cursor:default;">
+          <i class="fas fa-stop"></i>
+        </div>
+
+        <div class="tb-sep"></div>
+        <div class="tb-pill" title="Current JDK">
+          <i class="fas fa-coffee" style="color:#f89820;font-size:11px;"></i>
+          <span>Java 17 (Temurin)</span>
+        </div>
+
+        <div class="tb-right">
+          <div class="tb-icon-btn" title="Search Everywhere (Double Shift)"><i class="fas fa-search"></i></div>
+          <div class="tb-icon-btn" title="Git Pull/Push"><i class="fab fa-git-alt"></i></div>
+          <div class="tb-icon-btn" title="Settings (Ctrl+Alt+S)"><i class="fas fa-cog"></i></div>
+        </div>
+      </div>
+
+      <!-- Body of the IDE -->
+      <div id="ij-body">
+
+        <!-- Activity Bar (Far Left Strip) -->
+        <div id="activity-bar">
+          <div class="ab-btn act" data-tip="Project Explorer (Alt+1)"><i class="fas fa-folder-open"></i></div>
+          <div class="ab-btn" data-tip="Commit Changes (Alt+0)"><i class="fas fa-code-commit"></i></div>
+          <div class="ab-btn" data-tip="Pull Requests"><i class="fas fa-code-pull-request"></i></div>
+          <div class="ab-sep"></div>
+          <div class="ab-btn" data-tip="Structure (Alt+7)"><i class="fas fa-sitemap"></i></div>
+          <div class="ab-btn" onclick="switchBottomTab('services')" data-tip="Spring Boot Services (Alt+8)"><i class="fas fa-leaf" style="color:#6db33f;"></i></div>
+          <div class="ab-btn" onclick="switchBottomTab('docker')" data-tip="Docker Containers"><i class="fab fa-docker" style="color:#2496ed;"></i></div>
+          <div class="ab-btn" data-tip="Database (PostgreSQL)"><i class="fas fa-database" style="color:#56a8f5;"></i></div>
+          <div class="ab-sep ab-bottom"></div>
+          <div class="ab-btn" onclick="switchBottomTab('terminal')" data-tip="Terminal (Alt+F12)"><i class="fas fa-terminal"></i></div>
+          <div class="ab-btn" onclick="switchBottomTab('problems')" data-tip="Problems (Alt+6)"><i class="fas fa-triangle-exclamation"></i></div>
+        </div>
+
+        <!-- Project Tool Window (Files Hierarchy) -->
+        <div id="project-panel">
+          <div class="panel-header">
+            <i class="fas fa-folder-open" style="color:#dfb158;font-size:11px;"></i>
+            <span>Project</span>
+            <div class="ph-actions">
+              <div class="ph-btn" title="Collapse All"><i class="fas fa-compress"></i></div>
+              <div class="ph-btn" title="Options"><i class="fas fa-ellipsis-v"></i></div>
+            </div>
+          </div>
+          <div id="tree-content"></div>
+        </div>
+
+        <!-- Center Workspace (Editor + Bottom Panel) -->
+        <div id="center-workspace">
+
+          <!-- Editor Tab Headers -->
+          <div id="editor-tabs">
+            <div class="tab-item act" data-file="main" onclick="selectTab('main', this)">
+              <i class="fas fa-coffee" style="color:#f89820;font-size:11px;"></i>
+              <span>PawanPortfolioApplication.java</span>
+              <div class="tab-dot"></div>
+              <span class="tab-close">×</span>
+            </div>
+            <div class="tab-item" data-file="props" onclick="selectTab('props', this)">
+              <i class="fas fa-cog" style="color:#8bc34a;font-size:11px;"></i>
+              <span>application.properties</span>
+              <span class="tab-close">×</span>
+            </div>
+            <div class="tab-item" data-file="pom" onclick="selectTab('pom', this)">
+              <i class="fas fa-file-code" style="color:#e06c75;font-size:11px;"></i>
+              <span>pom.xml</span>
+              <span class="tab-close">×</span>
+            </div>
+          </div>
+
+          <!-- Breadcrumbs Bar -->
+          <div id="breadcrumb-bar">
+            <span class="bc-item">pawan-portfolio</span>
+            <span>›</span>
+            <span class="bc-item">src</span>
+            <span>›</span>
+            <span class="bc-item">main</span>
+            <span>›</span>
+            <span class="bc-item">java</span>
+            <span>›</span>
+            <span class="bc-item">com.pawan.portfolio</span>
+            <span>›</span>
+            <span class="bc-item act" id="active-breadcrumb">PawanPortfolioApplication.java</span>
+          </div>
+
+          <!-- Code Viewport -->
+          <div id="code-viewport">
+            <div id="line-numbers"></div>
+            <div id="gutter-col">
+              <div class="breakpoint" id="active-bp" style="top:370px;" title="Breakpoint at SpringApplication.run(...)"></div>
+            </div>
+            <div id="code-text" tabindex="0"></div>
+
+            <!-- Autocomplete Intellisense Box -->
+            <div id="autocomplete-box">
+              <div class="ac-row sel">
+                <span class="ac-icon" style="color:#56a8f5;">Ⓒ</span>
+                <span><span class="ac-match">SpringBoot</span>Application</span>
+                <span class="ac-pkg">org.springframework.boot</span>
+              </div>
+              <div class="ac-row">
+                <span class="ac-icon" style="color:#56a8f5;">Ⓒ</span>
+                <span>SpringBootTest</span>
+                <span class="ac-pkg">org.springframework.boot.test</span>
+              </div>
+              <div class="ac-row">
+                <span class="ac-icon" style="color:#f89820;">Ⓘ</span>
+                <span>SpringBootServletInitializer</span>
+                <span class="ac-pkg">org.springframework.boot.web</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Services & Console Panel (Modeled after screenshot) -->
+          <div id="bottom-panel">
+
+            <!-- Bottom Tabs Bar -->
+            <div id="bottom-tabs-bar">
+              <div class="bot-tab act" data-panel="services" onclick="switchBottomTab('services', this)">
+                <i class="fas fa-leaf" style="color:#6db33f;"></i>
+                <span>Services</span>
+              </div>
+              <div class="bot-tab" data-panel="run" onclick="switchBottomTab('run', this)">
+                <i class="fas fa-play" style="color:var(--ij-green);font-size:10px;"></i>
+                <span>Run</span>
+              </div>
+              <div class="bot-tab" data-panel="debug" onclick="switchBottomTab('debug', this)">
+                <i class="fas fa-bug" style="color:#e06c75;font-size:10px;"></i>
+                <span>Debug</span>
+              </div>
+              <div class="bot-tab" data-panel="docker" onclick="switchBottomTab('docker', this)">
+                <i class="fab fa-docker" style="color:#2496ed;"></i>
+                <span>Docker</span>
+                <span class="tab-counter">3</span>
+              </div>
+              <div class="bot-tab" data-panel="terminal" onclick="switchBottomTab('terminal', this)">
+                <i class="fas fa-terminal" style="font-size:10px;"></i>
+                <span>Terminal</span>
+              </div>
+              <div class="bot-tab" data-panel="problems" onclick="switchBottomTab('problems', this)">
+                <i class="fas fa-triangle-exclamation" style="font-size:10px;color:var(--ij-yellow);"></i>
+                <span>Problems</span>
+                <span class="tab-counter">0</span>
+              </div>
+            </div>
+
+            <!-- Bottom Views Container -->
+            <div id="bottom-views">
+
+              <!-- Services Panel (Matches sample_intellijidea_ss.png layout) -->
+              <div id="panel-services" class="bot-view act">
+                <div class="svc-tree">
+                  <div class="svc-group-title">
+                    <i class="fas fa-chevron-down" style="font-size:8px;"></i>
+                    <i class="fas fa-leaf" style="color:#6db33f;"></i>
+                    <span>Spring Boot</span>
+                  </div>
+                  <div class="svc-item act" onclick="executeSpringBootRun()">
+                    <i class="fas fa-play" style="font-size:8px;color:var(--ij-green);"></i>
+                    <span>PawanPortfolioApplication</span>
+                  </div>
+                  <div class="svc-item">
+                    <i class="fas fa-circle" style="font-size:6px;color:var(--ij-text-m);"></i>
+                    <span>GatewayApplication</span>
+                  </div>
+                  <div class="svc-item">
+                    <i class="fas fa-circle" style="font-size:6px;color:var(--ij-text-m);"></i>
+                    <span>Task1Application</span>
+                  </div>
+                  <div class="svc-item">
+                    <i class="fas fa-circle" style="font-size:6px;color:var(--ij-text-m);"></i>
+                    <span>Task2Application</span>
+                  </div>
+                  <div class="svc-group-title" style="margin-top:10px;">
+                    <i class="fas fa-chevron-down" style="font-size:8px;"></i>
+                    <i class="fab fa-docker" style="color:#2496ed;"></i>
+                    <span>docker-compose</span>
+                  </div>
+                  <div class="svc-item">
+                    <i class="fas fa-circle" style="font-size:6px;color:#4ade80;"></i>
+                    <span>postgres-db:5432</span>
+                  </div>
+                </div>
+
+                <div style="display:flex;flex-direction:column;overflow:hidden;">
+                  <div class="svc-actions-bar">
+                    <div class="svc-run-trigger" onclick="executeSpringBootRun()" title="Run current service">
+                      <i class="fas fa-play" style="font-size:9px;"></i>
+                      <span>Run PawanPortfolioApplication</span>
                     </div>
-                </div>
-            </div>
-            <div class="about-card reveal">
-                <div class="about-info-item"><div class="about-info-icon"><i class="fas fa-user"></i></div><div class="about-info-content"><small>Full Name</small><span>Pawan Bulathwaththa</span></div></div>
-                <div class="about-info-item"><div class="about-info-icon"><i class="fas fa-map-marker-alt"></i></div><div class="about-info-content"><small>Location</small><span>Colombo, Sri Lanka</span></div></div>
-                <div class="about-info-item"><div class="about-info-icon"><i class="fas fa-envelope"></i></div><div class="about-info-content"><small>Email</small><a href="mailto:pawanbulatwaththa@gmail.com">pawanbulatwaththa@gmail.com</a></div></div>
-                <div class="about-info-item"><div class="about-info-icon"><i class="fas fa-phone"></i></div><div class="about-info-content"><small>Phone</small><a href="tel:+94717524985">+94 71 752 4985</a></div></div>
-                <div class="about-info-item"><div class="about-info-icon"><i class="fab fa-github"></i></div><div class="about-info-content"><small>GitHub</small><a href="https://github.com/PawanBulathwaththa" target="_blank">github.com/PawanBulathwaththa</a></div></div>
-                <div class="about-info-item"><div class="about-info-icon"><i class="fab fa-linkedin"></i></div><div class="about-info-content"><small>LinkedIn</small><a href="https://www.linkedin.com/in/pawan-bulathwaththa-99a51733b" target="_blank">pawan-bulathwaththa</a></div></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-tag">02 / Work Experience</span>
-            <h2 class="section-title">Professional <span>Journey</span></h2>
-        </div>
-        <div class="timeline">
-            <div class="timeline-item reveal">
-                <div class="timeline-card">
-                    <div class="timeline-header">
-                        <div class="timeline-title">Trainee Software Engineer</div>
-                        <div class="timeline-date"><i class="far fa-calendar-alt"></i> Feb 2026 &ndash; Aug 2026</div>
+                    <span style="color:var(--ij-text-m);font-size:11px;">Port: <strong>8080</strong></span>
+                    <span style="color:var(--ij-text-m);font-size:11px;margin-left:auto;">Context: / (root)</span>
+                  </div>
+                  <div class="svc-list-panel">
+                    <div class="svc-grid-row">
+                      <input type="checkbox" checked class="svc-chk">
+                      <i class="fas fa-leaf" style="color:#6db33f;"></i>
+                      <strong style="color:var(--ij-text-b);">PawanPortfolioApplication</strong>
+                      <span class="svc-status-pill running" id="svc-main-status">Ready to Boot</span>
                     </div>
-                    <div class="timeline-org"><i class="fas fa-building"></i> DvTechLabs (Pvt Ltd) &middot; Colombo, Sri Lanka</div>
-                    <ul class="timeline-bullets">
-                        <li>Engineered full-stack SaaS and e-commerce features using Spring Boot, Next.js, and PostgreSQL.</li>
-                        <li>Architected RESTful APIs via MVC patterns to connect frontend UIs with backend microservices.</li>
-                        <li>Automated QA and deployment by integrating CI/CD pipelines and Playwright end-to-end test suites.</li>
-                        <li>Secured access by implementing Keycloak and OAuth 2.0 for user authentication and role-based authorization.</li>
-                        <li>Architected and deployed an isolated staging environment on Linux VPS using Coolify, Traefik, and Docker.</li>
-                        <li>Implemented secure edge-to-container routing via Cloudflare proxying and Traefik ingress with SSL termination.</li>
-                        <li>Engineered automated containerized build pipelines for Spring Boot and Next.js, optimizing continuous deployment.</li>
-                    </ul>
-                    <div class="exp-badges">
-                        <span class="exp-badge">Spring Boot</span><span class="exp-badge">Next.js</span><span class="exp-badge">PostgreSQL</span><span class="exp-badge">Docker</span><span class="exp-badge">Keycloak</span><span class="exp-badge">CI/CD</span><span class="exp-badge">Playwright</span><span class="exp-badge">Linux VPS</span>
+                    <div class="svc-grid-row">
+                      <input type="checkbox" checked class="svc-chk">
+                      <i class="fas fa-leaf" style="color:#6db33f;"></i>
+                      <span>GatewayApplication</span>
+                      <span class="svc-status-pill stopped">Configured</span>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- EDUCATION -->
-<section id="education" class="section-alt">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-tag">03 / Education</span>
-            <h2 class="section-title">Academic <span>Background</span></h2>
-        </div>
-        <div class="edu-grid">
-            <div class="edu-card reveal">
-                <div class="edu-icon"><i class="fas fa-university"></i></div>
-                <div class="edu-degree">BSc (Hons) Computer Science with Software Engineering</div>
-                <div class="edu-institution">Coventry University</div>
-                <div class="edu-year"><i class="far fa-calendar"></i> 2026</div>
-            </div>
-            <div class="edu-card reveal">
-                <div class="edu-icon"><i class="fas fa-laptop-code"></i></div>
-                <div class="edu-degree">Higher Diploma in Software Engineering</div>
-                <div class="edu-institution">NIBM City University</div>
-                <div class="edu-year"><i class="far fa-calendar"></i> 2024 &ndash; 2025</div>
-            </div>
-            <div class="edu-card reveal">
-                <div class="edu-icon"><i class="fas fa-desktop"></i></div>
-                <div class="edu-degree">Diploma in Computer System Design</div>
-                <div class="edu-institution">NIBM City University</div>
-                <div class="edu-year"><i class="far fa-calendar"></i> 2023 &ndash; 2024</div>
-                <span class="edu-gpa">GPA: 3.72</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-tag">04 / Skills</span>
-            <h2 class="section-title">Technical <span>Expertise</span></h2>
-        </div>
-        <div class="skills-container">
-            <div class="skill-group reveal">
-                <div class="skill-group-title"><i class="fas fa-code"></i> Languages &amp; Runtimes</div>
-                <div class="skill-pills">
-                    <span class="skill-pill">HTML5</span><span class="skill-pill">CSS3</span><span class="skill-pill">Java</span><span class="skill-pill">JavaScript</span><span class="skill-pill">TypeScript</span><span class="skill-pill">Node.js</span><span class="skill-pill">Python</span><span class="skill-pill">PHP</span><span class="skill-pill">Kotlin</span><span class="skill-pill">C#</span><span class="skill-pill">C++</span>
-                </div>
-            </div>
-            <div class="skill-group reveal">
-                <div class="skill-group-title"><i class="fas fa-layer-group"></i> Frameworks &amp; Libraries</div>
-                <div class="skill-pills">
-                    <span class="skill-pill">Spring Boot</span><span class="skill-pill">Next.js</span><span class="skill-pill">React.js</span><span class="skill-pill">Laravel</span><span class="skill-pill">Bootstrap</span><span class="skill-pill">Playwright</span><span class="skill-pill">Shadcn UI</span><span class="skill-pill">Thymeleaf</span>
-                </div>
-            </div>
-            <div class="skill-group reveal">
-                <div class="skill-group-title"><i class="fas fa-database"></i> Databases</div>
-                <div class="skill-pills">
-                    <span class="skill-pill">PostgreSQL</span><span class="skill-pill">MySQL</span><span class="skill-pill">MongoDB</span><span class="skill-pill">Oracle DB</span><span class="skill-pill">Firebase</span>
-                </div>
-            </div>
-            <div class="skill-group reveal">
-                <div class="skill-group-title"><i class="fas fa-server"></i> DevOps &amp; Infrastructure</div>
-                <div class="skill-pills">
-                    <span class="skill-pill">Docker</span><span class="skill-pill">Linux CLI</span><span class="skill-pill">CI/CD Pipelines</span><span class="skill-pill">Keycloak</span><span class="skill-pill">OAuth 2.0</span><span class="skill-pill">Traefik</span><span class="skill-pill">Coolify</span><span class="skill-pill">Cloudflare</span><span class="skill-pill">Bash</span>
-                </div>
-            </div>
-            <div class="skill-group reveal">
-                <div class="skill-group-title"><i class="fas fa-tools"></i> Tools &amp; Concepts</div>
-                <div class="skill-pills">
-                    <span class="skill-pill">Git &amp; GitHub</span><span class="skill-pill">Postman</span><span class="skill-pill">Figma</span><span class="skill-pill">IntelliJ IDEA</span><span class="skill-pill">Android Studio</span><span class="skill-pill">VS Code</span><span class="skill-pill">MVC Architecture</span><span class="skill-pill">REST API</span><span class="skill-pill">OOP</span><span class="skill-pill">Swagger</span>
-                </div>
-            </div>
-            <div class="skill-group reveal">
-                <div class="skill-group-title"><i class="fas fa-paint-brush"></i> Design &amp; Mobile</div>
-                <div class="skill-pills">
-                    <span class="skill-pill">UI/UX Design</span><span class="skill-pill">Kotlin Jetpack Compose</span><span class="skill-pill">Arduino C++</span><span class="skill-pill">IoT</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects" class="section-alt">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-tag">05 / Portfolio</span>
-            <h2 class="section-title">Projects &amp; <span>Academic Work</span></h2>
-        </div>
-        <div class="projects-list">
-            <div class="project-row reveal">
-                <div class="project-index">01</div>
-                <div class="project-main">
-                    <div class="project-name-row"><span class="project-name">udaratacomputers.lk</span><span class="project-type-badge">E-Commerce &middot; Live</span></div>
-                    <p class="project-desc">A live e-commerce platform for Udarata Computers, enabling online sales and inventory management with a modern full-stack architecture.</p>
-                </div>
-                <div class="project-stack"><span class="stack-tag">Laravel</span><span class="stack-tag">Next.js</span><span class="stack-tag">TypeScript</span><span class="stack-tag">MySQL</span></div>
-            </div>
-            <div class="project-row reveal">
-                <div class="project-index">02</div>
-                <div class="project-main">
-                    <div class="project-name-row"><span class="project-name">UrbanFood E-commerce Platform</span><span class="project-type-badge">Full Stack</span></div>
-                    <p class="project-desc">Full-stack online food ordering system with CRUD operations, MVC architecture, and multi-database connectivity for high availability.</p>
-                </div>
-                <div class="project-stack"><span class="stack-tag">Spring Boot</span><span class="stack-tag">Thymeleaf</span><span class="stack-tag">Oracle DB</span><span class="stack-tag">MongoDB</span></div>
-            </div>
-            <div class="project-row reveal">
-                <div class="project-index">03</div>
-                <div class="project-main">
-                    <div class="project-name-row"><span class="project-name">Smart Hall Management System</span><span class="project-type-badge">SaaS &middot; Full Stack</span></div>
-                    <p class="project-desc">Web-based hall management with automated allocation. Role-based access for admins, students and lecturers, secured with Keycloak OAuth2.0.</p>
-                </div>
-                <div class="project-stack"><span class="stack-tag">Next.js</span><span class="stack-tag">Spring Boot</span><span class="stack-tag">PostgreSQL</span><span class="stack-tag">Keycloak</span></div>
-            </div>
-            <div class="project-row reveal">
-                <div class="project-index">04</div>
-                <div class="project-main">
-                    <div class="project-name-row"><span class="project-name">Vehicle Ordering System</span><span class="project-type-badge">Full Stack</span></div>
-                    <p class="project-desc">Web-based vehicle ordering platform with separate customer, dealer and admin panels handling authentication, data management, and backend logic.</p>
-                </div>
-                <div class="project-stack"><span class="stack-tag">React.js</span><span class="stack-tag">Spring Boot</span><span class="stack-tag">MySQL</span></div>
-            </div>
-            <div class="project-row reveal">
-                <div class="project-index">05</div>
-                <div class="project-main">
-                    <div class="project-name-row"><span class="project-name">FixMyRide App</span><span class="project-type-badge">Mobile + Web</span></div>
-                    <p class="project-desc">Web and mobile application helping users locate nearby mechanics during vehicle breakdowns with full backend APIs and user workflow management.</p>
-                </div>
-                <div class="project-stack"><span class="stack-tag">Kotlin Compose</span><span class="stack-tag">Laravel</span><span class="stack-tag">PHP</span><span class="stack-tag">MySQL</span></div>
-            </div>
-            <div class="project-row reveal">
-                <div class="project-index">06</div>
-                <div class="project-main">
-                    <div class="project-name-row"><span class="project-name">Smart Water Management System</span><span class="project-type-badge">IoT &middot; Full Stack</span></div>
-                    <p class="project-desc">IoT-integrated web and mobile platform with autonomous water control to monitor quality and manage daily household water usage in real time.</p>
-                </div>
-                <div class="project-stack"><span class="stack-tag">C++</span><span class="stack-tag">Arduino</span><span class="stack-tag">Kotlin</span><span class="stack-tag">PHP</span><span class="stack-tag">Firebase</span></div>
-            </div>
-            <div class="project-row reveal">
-                <div class="project-index">07</div>
-                <div class="project-main">
-                    <div class="project-name-row"><span class="project-name">Talking Robot with Gemini AI</span><span class="project-type-badge">AI &middot; Robotics</span></div>
-                    <p class="project-desc">Gesture-controlled robot integrated with Gemini AI via API, enabling real-time interaction and voice-based question answering.</p>
-                </div>
-                <div class="project-stack"><span class="stack-tag">C++</span><span class="stack-tag">Arduino</span><span class="stack-tag">Gemini AI API</span></div>
-            </div>
-            <div class="project-row reveal">
-                <div class="project-index">08</div>
-                <div class="project-main">
-                    <div class="project-name-row"><span class="project-name">Heart Disease Prediction AI Model</span><span class="project-type-badge">AI / ML</span></div>
-                    <p class="project-desc">Machine learning model using Python to predict heart disease. Applied data preprocessing, feature engineering, and model evaluation techniques.</p>
-                </div>
-                <div class="project-stack"><span class="stack-tag">Python</span><span class="stack-tag">Machine Learning</span><span class="stack-tag">Data Preprocessing</span></div>
-            </div>
-            <div class="project-row reveal">
-                <div class="project-index">09</div>
-                <div class="project-main">
-                    <div class="project-name-row"><span class="project-name">Revol Tours Website</span><span class="project-type-badge">Web</span></div>
-                    <p class="project-desc">Full-featured tourism website for Revol Tours company with booking management and dynamic content.</p>
-                </div>
-                <div class="project-stack"><span class="stack-tag">PHP</span><span class="stack-tag">Bootstrap</span><span class="stack-tag">MySQL</span></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ACTIVITIES -->
-<section id="activities">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-tag">06 / Activities</span>
-            <h2 class="section-title">Extracurricular <span>Involvement</span></h2>
-        </div>
-        <div class="activities-grid">
-            <div class="activity-card reveal">
-                <div class="activity-icon"><i class="fas fa-crown"></i></div>
-                <div class="activity-role">President</div>
-                <div class="activity-org">Media Club &middot; NIBM Kandy</div>
-                <div class="activity-year">2024 &ndash; 2025</div>
-                <p class="activity-desc">Leading the media club, organizing events, managing content creation, and coordinating with team members to enhance the institution's media presence.</p>
-            </div>
-            <div class="activity-card reveal">
-                <div class="activity-icon"><i class="fas fa-edit"></i></div>
-                <div class="activity-role">Editor</div>
-                <div class="activity-org">Rotaract Club &middot; NIBM Kandy</div>
-                <div class="activity-year">Rotaract Year 2024 &ndash; 2025</div>
-                <p class="activity-desc">Responsible for editing and managing club publications, documenting events, and maintaining communication materials.</p>
-            </div>
-            <div class="activity-card reveal">
-                <div class="activity-icon"><i class="fas fa-laptop-code"></i></div>
-                <div class="activity-role">Active Member</div>
-                <div class="activity-org">IT Society &middot; NIBM Kandy</div>
-                <div class="activity-year">2023 &ndash; 2025</div>
-                <p class="activity-desc">Actively participating in IT society activities, workshops, hackathons, and collaborative projects to enhance technical skills.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="section-alt">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-tag">07 / Contact</span>
-            <h2 class="section-title">Get In <span>Touch</span></h2>
-        </div>
-        <div class="contact-layout">
-            <div class="contact-info-card reveal">
-                <h3>Contact Information</h3>
-                <div class="contact-item"><div class="contact-item-icon"><i class="fas fa-envelope"></i></div><a href="mailto:pawanbulatwaththa@gmail.com">pawanbulatwaththa@gmail.com</a></div>
-                <div class="contact-item"><div class="contact-item-icon"><i class="fas fa-phone"></i></div><a href="tel:+94717524985">+94 71 752 4985</a></div>
-                <div class="contact-item"><div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div><span>Colombo, Sri Lanka</span></div>
-                <div class="contact-item"><div class="contact-item-icon"><i class="fab fa-github"></i></div><a href="https://github.com/PawanBulathwaththa" target="_blank">github.com/PawanBulathwaththa</a></div>
-                <div class="contact-item"><div class="contact-item-icon"><i class="fab fa-linkedin"></i></div><a href="https://www.linkedin.com/in/pawan-bulathwaththa-99a51733b" target="_blank">linkedin.com/in/pawan-bulathwaththa</a></div>
-                <div class="contact-item"><div class="contact-item-icon"><i class="fas fa-globe"></i></div><a href="https://pawanbulathwaththa.github.io/my_portfolio" target="_blank">pawanbulathwaththa.github.io</a></div>
-            </div>
-            <div class="reveal">
-                <div class="ref-section-title">References</div>
-                <div class="references-grid">
-                    <div class="reference-card">
-                        <div class="reference-name">Ms. Anjula Weerasinghe</div>
-                        <div class="reference-title">Consultant Lecturer &middot; NIBM City University, Kandy</div>
-                        <div class="reference-contacts">
-                            <div class="reference-contact"><i class="fas fa-envelope"></i> anjula@nibm.lk</div>
-                            <div class="reference-contact"><i class="fas fa-phone"></i> +94 71 322 9158</div>
-                        </div>
+                    <div class="svc-grid-row">
+                      <input type="checkbox" checked class="svc-chk">
+                      <i class="fab fa-docker" style="color:#2496ed;"></i>
+                      <span>postgresql-server (v15)</span>
+                      <span class="svc-status-pill running">Healthy (5432)</span>
                     </div>
-                    <div class="reference-card">
-                        <div class="reference-name">Ms. Nilanka Singhegosha</div>
-                        <div class="reference-title">Consultant Lecturer &middot; NIBM City University, Kandy</div>
-                        <div class="reference-contacts">
-                            <div class="reference-contact"><i class="fas fa-envelope"></i> nilanka@nibm.lk</div>
-                            <div class="reference-contact"><i class="fas fa-phone"></i> +94 77 499 1984</div>
-                        </div>
-                    </div>
-                    <div class="reference-card">
-                        <div class="reference-name">Mr. Manjula Kulathunga</div>
-                        <div class="reference-title">Lecturer &middot; NIBM City University, Kandy</div>
-                        <div class="reference-contacts">
-                            <div class="reference-contact"><i class="fas fa-envelope"></i> pmkkulathunga@gmail.com</div>
-                            <div class="reference-contact"><i class="fas fa-phone"></i> +94 77 620 0029</div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
+              </div>
+
+              <!-- Run Console View -->
+              <div id="panel-run" class="bot-view">
+                <span class="c-muted">Click ▶ Run or the green button to start 'PawanPortfolioApplication'...</span>
+              </div>
+
+              <!-- Debugger View -->
+              <div id="panel-debug" class="bot-view">
+                <div style="display:grid;grid-template-columns:1fr 1fr;height:100%;gap:12px;">
+                  <div style="border-right:1px solid var(--ij-border);padding-right:12px;">
+                    <div style="font-size:11px;color:var(--ij-text-m);margin-bottom:6px;text-transform:uppercase;">Stack Frames</div>
+                    <div style="color:#fff;background:var(--ij-bg-sel);padding:3px 6px;border-radius:3px;">
+                      <i class="fas fa-arrow-right" style="color:#ffc66d;font-size:9px;"></i>
+                      main:22, PawanPortfolioApplication (com.pawan.portfolio)
+                    </div>
+                    <div style="color:var(--ij-text-m);padding:3px 6px;">run:1440, SpringApplication</div>
+                  </div>
+                  <div>
+                    <div style="font-size:11px;color:var(--ij-text-m);margin-bottom:6px;text-transform:uppercase;">Variables</div>
+                    <div style="color:var(--syn-kw);">args = <span style="color:#6aab73;">String[0]</span></div>
+                    <div style="color:var(--syn-kw);">developer = <span style="color:#6aab73;">"Pawan Bulathwaththa"</span></div>
+                    <div style="color:var(--syn-kw);">activeProfile = <span style="color:#6aab73;">"production"</span></div>
+                    <div style="color:var(--syn-kw);">status = <span style="color:#4ade80;">READY_TO_LAUNCH</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Docker Containers View -->
+              <div id="panel-docker" class="bot-view">
+                <div style="font-family:var(--f-ui);">
+                  <div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--ij-border);">
+                    <i class="fab fa-docker" style="color:#2496ed;font-size:16px;"></i>
+                    <div>
+                      <div style="color:var(--ij-text-b);font-weight:600;">pawan-postgres-15</div>
+                      <div style="font-size:11px;color:var(--ij-text-m);">Image: postgres:15-alpine · Up 2 hours · Port: 5432:5432</div>
+                    </div>
+                    <span style="margin-left:auto;color:#4ade80;font-size:11px;"><i class="fas fa-check-circle"></i> Running</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--ij-border);">
+                    <i class="fab fa-docker" style="color:#2496ed;font-size:16px;"></i>
+                    <div>
+                      <div style="color:var(--ij-text-b);font-weight:600;">keycloak-auth-server</div>
+                      <div style="font-size:11px;color:var(--ij-text-m);">Image: quay.io/keycloak/keycloak:23 · Port: 8180:8080</div>
+                    </div>
+                    <span style="margin-left:auto;color:#4ade80;font-size:11px;"><i class="fas fa-check-circle"></i> Running</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Terminal View -->
+              <div id="panel-terminal" class="bot-view" style="background:#141517;">
+                <div><span style="color:#4ade80;">pawan@macbook-pro</span>:<span style="color:#56a8f5;">~/Documents/pawan-portfolio</span>$ ./mvnw spring-boot:run</div>
+                <div style="color:var(--ij-text-m);margin-top:4px;">Tip: Click the top-bar ▶ Run button for full visual boot simulation.</div>
+              </div>
+
+              <!-- Problems View -->
+              <div id="panel-problems" class="bot-view">
+                <div style="color:#4ade80;display:flex;align-items:center;gap:6px;">
+                  <i class="fas fa-check-circle"></i>
+                  <span>No compilation errors or warnings found in 'pawan-portfolio'.</span>
+                </div>
+              </div>
+
             </div>
+
+            <!-- In-IDE Live Embedded Browser Viewport (localhost:8080) -->
+            <div id="ide-browser-strip">
+              <div class="ib-nav">
+                <button class="ib-btn" title="Back"><i class="fas fa-arrow-left"></i></button>
+                <button class="ib-btn" title="Forward"><i class="fas fa-arrow-right"></i></button>
+                <button class="ib-btn" title="Reload"><i class="fas fa-rotate-right"></i></button>
+                <div class="ib-url">
+                  <i class="fas fa-lock" style="font-size:9px;"></i>
+                  <span>http://localhost:8080/</span>
+                  <span style="margin-left:auto;color:var(--ij-text-m);font-size:10px;">Spring Boot Live View</span>
+                </div>
+                <button class="ib-expand-btn" onclick="launchPortfolio()">
+                  <i class="fas fa-expand"></i>
+                  <span>Enter Full Portfolio</span>
+                </button>
+              </div>
+              <div class="ib-viewport">
+                <iframe id="ib-frame" src="index2.html" title="Embedded App Preview"></iframe>
+              </div>
+            </div>
+
+          </div><!-- /bottom-panel -->
+
+        </div><!-- /center-workspace -->
+
+        <!-- AI Assistant Sidebar (Right) -->
+        <div id="ai-sidebar">
+          <div class="ai-header">
+            <i class="fas fa-sparkles" style="color:#ffd700;"></i>
+            <span>AI Assistant</span>
+            <span class="ai-tag">GEMINI</span>
+          </div>
+          <div id="ai-body">
+            <div class="ai-card">
+              <div class="ai-badge">Architecture Analysis</div>
+              <div>Spring Boot 3 backend paired with Next.js frontend, Keycloak authorization, and Docker staging pipelines.</div>
+            </div>
+            <div class="ai-card">
+              <div class="ai-badge">Featured Endpoint</div>
+              <div>Portfolio application ready to initialize at <strong>localhost:8080</strong>.</div>
+              <div class="ai-code-block">GET /api/v1/profile<br>200 OK — Ready</div>
+            </div>
+            <div class="ai-card">
+              <div class="ai-badge">Skill Recommendation</div>
+              <div style="font-size:11px;">"Pawan's strong background in full stack DevOps (Coolify, Traefik, Keycloak) stands out."</div>
+            </div>
+          </div>
         </div>
-    </div>
-</section>
 
-<!-- FOOTER -->
-<footer>
-    <div class="container">
-        <p>&copy; 2026 <a href="#home">Pawan Bulathwaththa</a>. Crafted with HTML5, CSS3 &amp; Vanilla JS.</p>
-    </div>
-</footer>
+      </div><!-- /ij-body -->
 
-<button id="scrollTop" aria-label="Scroll to top"><i class="fas fa-chevron-up"></i></button>
+      <!-- Status Bar (Bottom Strip) -->
+      <div id="status-bar">
+        <div class="sb-item"><i class="fas fa-code-branch" style="color:#76b9ed;"></i>&nbsp;main</div>
+        <div class="sb-item"><i class="fas fa-check" style="color:#4ade80;"></i>&nbsp;0 errors</div>
+        <div id="sb-status-msg">
+          <span id="status-text-content">Ready</span>
+          <div id="sb-progress-wrap"><div id="sb-progress-bar"></div></div>
+        </div>
+        <div class="sb-right">
+          <div class="sb-item" title="Click for details">UTF-8</div>
+          <div class="sb-item">4 spaces</div>
+          <div class="sb-item">LF</div>
+          <div class="sb-item" style="color:#f89820;">Java 17</div>
+        </div>
+      </div>
+
+    </div><!-- /ij-win -->
+
+  </div><!-- /desktop-content -->
+
+  <!-- macOS Bottom Dock -->
+  <div id="dock-container">
+    <div class="dock">
+      <div class="dock-app" title="Finder">🗂️</div>
+      <div class="dock-app act" title="IntelliJ IDEA" onclick="animateWinRestore()">💡</div>
+      <div class="dock-app" title="Terminal" onclick="switchBottomTab('terminal')">⬛</div>
+      <div class="dock-app" title="Google Chrome" onclick="launchPortfolio()">🌐</div>
+      <div class="dock-app" title="Slack">💬</div>
+      <div class="dock-app" title="Postman">📮</div>
+      <div class="dock-app" title="Docker Desktop">🐳</div>
+      <div class="dock-sep"></div>
+      <div class="dock-app" title="View Full Portfolio" onclick="launchPortfolio()">🚀</div>
+    </div>
+  </div>
+
+</div><!-- /os-desktop -->
+
+<!-- CONTEXT MENU (RIGHT CLICK) -->
+<div id="context-menu">
+  <div class="cm-row" onclick="triggerGitBlame()">
+    <span>Git Blame</span>
+    <span class="cm-shortcut">⌥⇧G</span>
+  </div>
+  <div class="cm-row" onclick="executeSpringBootRun()">
+    <span>Run 'PawanPortfolioApplication'</span>
+    <span class="cm-shortcut">⇧F10</span>
+  </div>
+  <div class="cm-row" onclick="executeDebugRun()">
+    <span>Debug 'PawanPortfolioApplication'</span>
+    <span class="cm-shortcut">⇧F9</span>
+  </div>
+  <div class="cm-sep"></div>
+  <div class="cm-row" onclick="launchPortfolio()">
+    <span style="color:#4ade80;font-weight:600;">🚀 Open Full Portfolio</span>
+    <span class="cm-shortcut">Enter</span>
+  </div>
+</div>
 
 <script>
-    // Typing
-    const roles = ['Full Stack Developer','Spring Boot Engineer','Next.js Developer','DevOps Enthusiast','UI/UX Designer'];
-    let rIdx=0, cIdx=0, isDel=false;
-    function type() {
-        const el=document.getElementById('typingText'); if(!el) return;
-        const cur=roles[rIdx];
-        if(isDel) { el.textContent=cur.substring(0,cIdx-1); cIdx--; if(cIdx===0){isDel=false;rIdx=(rIdx+1)%roles.length;setTimeout(type,500);return;} }
-        else { el.textContent=cur.substring(0,cIdx+1); cIdx++; if(cIdx===cur.length){isDel=true;setTimeout(type,1800);return;} }
-        setTimeout(type,isDel?60:100);
+/* =====================================================================
+   PAWAN BULATHWATHTHA — CINEMATIC INTELLIJ PORTFOLIO EXPERIENCE
+   Spring Boot · Next.js · TypeScript · Docker · Keycloak
+   ===================================================================== */
+
+const $ = id => document.getElementById(id);
+const delay = ms => new Promise(res => setTimeout(res, ms));
+
+// 1. REALTIME TOP BAR CLOCK
+function initClock() {
+  const update = () => {
+    const d = new Date();
+    const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const h = String(d.getHours()).padStart(2, '0');
+    const m = String(d.getMinutes()).padStart(2, '0');
+    $('macos-clock').textContent = `${days[d.getDay()]} ${months[d.getMonth()]} ${d.getDate()}  ${h}:${m}`;
+  };
+  update();
+  setInterval(update, 15000);
+}
+
+// 2. PROJECT FILE TREE DATA
+const FILE_TREE_DATA = [
+  { name: 'pawan-portfolio', icon: 'fa-folder-open', cls: 'folder', depth: 0, expanded: true },
+  { name: 'src', icon: 'fa-folder', cls: 'folder', depth: 1, expanded: true },
+  { name: 'main', icon: 'fa-folder', cls: 'folder', depth: 2, expanded: true },
+  { name: 'java', icon: 'fa-folder', cls: 'folder', depth: 3, expanded: true },
+  { name: 'com.pawan.portfolio', icon: 'fa-folder', cls: 'folder', depth: 4, expanded: true },
+  { name: 'PawanPortfolioApplication.java', icon: 'fa-coffee', cls: 'java', depth: 5, file: 'main', active: true },
+  { name: 'AboutController.java', icon: 'fa-coffee', cls: 'java', depth: 5, file: 'about' },
+  { name: 'ExperienceController.java', icon: 'fa-coffee', cls: 'java', depth: 5, file: 'experience' },
+  { name: 'ProjectsController.java', icon: 'fa-coffee', cls: 'java', depth: 5, file: 'projects' },
+  { name: 'SkillsController.java', icon: 'fa-coffee', cls: 'java', depth: 5, file: 'skills' },
+  { name: 'ContactController.java', icon: 'fa-coffee', cls: 'java', depth: 5, file: 'contact' },
+  { name: 'resources', icon: 'fa-folder', cls: 'folder', depth: 3, expanded: true },
+  { name: 'application.properties', icon: 'fa-cog', cls: 'props', depth: 4, file: 'props' },
+  { name: 'pom.xml', icon: 'fa-file-code', cls: 'xml', depth: 1, file: 'pom' },
+  { name: 'Dockerfile', icon: 'fa-docker fab', cls: 'docker', depth: 1, file: 'docker' },
+  { name: 'docker-compose.yml', icon: 'fa-docker fab', cls: 'docker', depth: 1, file: 'compose' }
+];
+
+function renderFileTree() {
+  const container = $('tree-content');
+  container.innerHTML = '';
+  FILE_TREE_DATA.forEach(node => {
+    const row = document.createElement('div');
+    row.className = 'tree-row' + (node.active ? ' act' : '');
+    row.style.paddingLeft = (node.depth * 13 + 6) + 'px';
+    const isFolder = node.cls === 'folder';
+    const fab = node.icon.includes('fab') ? 'fab' : 'fas';
+    const iconName = node.icon.replace(' fab','').replace(' fas','');
+
+    row.innerHTML = `
+      <span class="tree-arrow">${isFolder ? (node.expanded ? '▼' : '▶') : ''}</span>
+      <i class="${fab} ${iconName} tree-icon ${node.cls}"></i>
+      <span class="tree-label">${node.name}</span>
+    `;
+
+    if (node.file) {
+      row.onclick = () => {
+        document.querySelectorAll('.tree-row').forEach(r => r.classList.remove('act'));
+        row.classList.add('act');
+        loadFileInEditor(node.file);
+      };
     }
-    type();
+    row.oncontextmenu = e => {
+      e.preventDefault();
+      showContextMenu(e.clientX, e.clientY);
+    };
+    container.appendChild(row);
+  });
+}
 
-    // Navbar
-    const navbar=document.getElementById('navbar');
-    window.addEventListener('scroll',()=>{
-        document.getElementById('scrollTop').classList.toggle('visible',window.scrollY>400);
-        const secs=document.querySelectorAll('section[id]'); let cur='';
-        secs.forEach(s=>{ if(window.scrollY+90>=s.offsetTop) cur=s.id; });
-        document.querySelectorAll('.nav-links a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
-    });
-    document.getElementById('navToggle').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open'));
-    document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
-    document.getElementById('scrollTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+// 3. FILE CONTENTS REPOSITORY
+const FILE_CONTENTS = {
+  main: `<span class="kw">package</span> <span class="plain">com.pawan.portfolio;</span>
 
-    // Reveal
-    const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
-    document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+<span class="kw">import</span> <span class="type">org.springframework.boot.SpringApplication</span>;
+<span class="kw">import</span> <span class="type">org.springframework.boot.autoconfigure.SpringBootApplication</span>;
+<span class="kw">import</span> <span class="type">org.springframework.context.annotation.Bean</span>;
+<span class="kw">import</span> <span class="type">java.util.List</span>;
 
-    // Counter
-    const co=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const el=e.target,t=parseInt(el.dataset.target);let c=0;const s=Math.ceil(t/30);const iv=setInterval(()=>{c=Math.min(c+s,t);el.textContent=c+'+';if(c>=t)clearInterval(iv);},50);co.unobserve(el);}});},{threshold:0.5});
-    document.querySelectorAll('[data-target]').forEach(el=>co.observe(el));
+<span class="cmt">/**
+ * =========================================================================
+ * @author  Pawan Bulathwaththa
+ * @role    Full Stack Developer | BSc (Hons) Computer Science
+ * @stack   Java (Spring Boot), Next.js, TypeScript, Docker, Keycloak
+ * =========================================================================
+ */</span>
+<span class="ann">@SpringBootApplication</span>
+<span class="kw">public class</span> <span class="type">PawanPortfolioApplication</span> {
 
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}});});
+    <span class="kw">public static void</span> <span class="method">main</span>(<span class="type">String</span>[] <span class="plain">args</span>) {
+        <span class="cmt">// Click ▶ Run (or Shift+F10) to start the portfolio app</span>
+        <span class="type">SpringApplication</span>.<span class="method">run</span>(<span class="type">PawanPortfolioApplication</span>.<span class="kw">class</span>, <span class="plain">args</span>);
+    }
+
+    <span class="ann">@Bean</span>
+    <span class="kw">public</span> <span class="type">DeveloperProfile</span> <span class="method">pawanProfile</span>() {
+        <span class="kw">return</span> <span class="type">DeveloperProfile</span>.<span class="method">builder</span>()
+            .<span class="method">fullName</span>(<span class="str">"Pawan Bulathwaththa"</span>)
+            .<span class="method">title</span>(<span class="str">"Full Stack Developer"</span>)
+            .<span class="method">education</span>(<span class="str">"Coventry University (BSc Hons)"</span>)
+            .<span class="method">experience</span>(<span class="str">"DvTechLabs (Trainee Software Engineer)"</span>)
+            .<span class="method">primarySkills</span>(<span class="type">List</span>.<span class="method">of</span>(
+                <span class="str">"Spring Boot"</span>, <span class="str">"Next.js"</span>, <span class="str">"PostgreSQL"</span>,
+                <span class="str">"Docker"</span>, <span class="str">"Keycloak"</span>, <span class="str">"CI/CD"</span>
+            ))
+            .<span class="method">openForOpportunities</span>(<span class="kw">true</span>)
+            .<span class="method">build</span>();
+    }
+}`,
+
+  props: `<span class="cmt"># ===============================================================</span>
+<span class="cmt"># Pawan Portfolio — Spring Boot Application Properties</span>
+<span class="cmt"># ===============================================================</span>
+<span class="kw">server.port</span>=<span class="num">8080</span>
+<span class="kw">spring.application.name</span>=<span class="str">pawan-portfolio-app</span>
+
+<span class="cmt"># Database Configuration — PostgreSQL</span>
+<span class="kw">spring.datasource.url</span>=<span class="str">jdbc:postgresql://localhost:5432/pawan_db</span>
+<span class="kw">spring.datasource.username</span>=<span class="str">pawan</span>
+<span class="kw">spring.datasource.password</span>=<span class="str">************</span>
+<span class="kw">spring.jpa.hibernate.ddl-auto</span>=<span class="str">update</span>
+
+<span class="cmt"># Security — Keycloak OAuth 2.0 Integration</span>
+<span class="kw">spring.security.oauth2.resourceserver.jwt.issuer-uri</span>=<span class="str">http://auth.pawan.dev/realms/portfolio</span>
+
+<span class="cmt"># Developer Metadata</span>
+<span class="kw">developer.name</span>=<span class="str">Pawan Bulathwaththa</span>
+<span class="kw">developer.email</span>=<span class="str">pawanbulatwaththa@gmail.com</span>
+<span class="kw">developer.phone</span>=<span class="str">+94 71 752 4985</span>
+<span class="kw">developer.status</span>=<span class="str">Ready for hire 🚀</span>`,
+
+  pom: `<span class="cmt">&lt;!-- Maven Project Object Model --&gt;</span>
+<span class="kw">&lt;project</span> <span class="type">xmlns</span>=<span class="str">"http://maven.apache.org/POM/4.0.0"</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;modelVersion&gt;</span>4.0.0<span class="kw">&lt;/modelVersion&gt;</span>
+    <span class="kw">&lt;groupId&gt;</span>com.pawan<span class="kw">&lt;/groupId&gt;</span>
+    <span class="kw">&lt;artifactId&gt;</span>pawan-portfolio<span class="kw">&lt;/artifactId&gt;</span>
+    <span class="kw">&lt;version&gt;</span>1.0.0-SNAPSHOT<span class="kw">&lt;/version&gt;</span>
+
+    <span class="kw">&lt;parent&gt;</span>
+        <span class="kw">&lt;groupId&gt;</span>org.springframework.boot<span class="kw">&lt;/groupId&gt;</span>
+        <span class="kw">&lt;artifactId&gt;</span>spring-boot-starter-parent<span class="kw">&lt;/artifactId&gt;</span>
+        <span class="kw">&lt;version&gt;</span>3.3.4<span class="kw">&lt;/version&gt;</span>
+    <span class="kw">&lt;/parent&gt;</span>
+
+    <span class="kw">&lt;dependencies&gt;</span>
+        <span class="cmt">&lt;!-- Web MVC, Data JPA, OAuth2 Resource Server, PostgreSQL --&gt;</span>
+        <span class="kw">&lt;dependency&gt;</span>
+            <span class="kw">&lt;groupId&gt;</span>org.springframework.boot<span class="kw">&lt;/groupId&gt;</span>
+            <span class="kw">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="kw">&lt;/artifactId&gt;</span>
+        <span class="kw">&lt;/dependency&gt;</span>
+    <span class="kw">&lt;/dependencies&gt;</span>
+<span class="kw">&lt;/project&gt;</span>`,
+
+  about: `<span class="kw">package</span> <span class="plain">com.pawan.portfolio.controller;</span>
+
+<span class="ann">@RestController</span>
+<span class="ann">@RequestMapping</span>(<span class="str">"/api/v1/about"</span>)
+<span class="kw">public class</span> <span class="type">AboutController</span> {
+    <span class="ann">@GetMapping</span>
+    <span class="kw">public</span> <span class="type">ResponseEntity</span>&lt;<span class="type">AboutInfo</span>&gt; <span class="method">getAbout</span>() {
+        <span class="kw">return</span> <span class="type">ResponseEntity</span>.<span class="method">ok</span>(<span class="kw">new</span> <span class="type">AboutInfo</span>(
+            <span class="str">"Pawan Bulathwaththa"</span>,
+            <span class="str">"Coventry University BSc (Hons) Computer Science"</span>,
+            <span class="str">"Hands-on experience in production SaaS, Docker, and CI/CD pipelines."</span>
+        ));
+    }
+}`,
+
+  experience: `<span class="kw">package</span> <span class="plain">com.pawan.portfolio.controller;</span>
+
+<span class="ann">@RestController</span>
+<span class="ann">@RequestMapping</span>(<span class="str">"/api/v1/experience"</span>)
+<span class="kw">public class</span> <span class="type">ExperienceController</span> {
+    <span class="ann">@GetMapping</span>
+    <span class="kw">public</span> <span class="type">Experience</span> <span class="method">current</span>() {
+        <span class="kw">return</span> <span class="kw">new</span> <span class="type">Experience</span>(
+            <span class="str">"Trainee Software Engineer"</span>,
+            <span class="str">"DvTechLabs (Pvt Ltd) - Colombo, Sri Lanka"</span>,
+            <span class="str">"Feb 2026 - Aug 2026"</span>,
+            <span class="str">"Built full-stack SaaS features with Spring Boot, Next.js, Keycloak, and Docker."</span>
+        );
+    }
+}`,
+
+  projects: `<span class="kw">package</span> <span class="plain">com.pawan.portfolio.controller;</span>
+
+<span class="ann">@RestController</span>
+<span class="ann">@RequestMapping</span>(<span class="str">"/api/v1/projects"</span>)
+<span class="kw">public class</span> <span class="type">ProjectsController</span> {
+    <span class="ann">@GetMapping</span>
+    <span class="kw">public</span> <span class="type">List</span>&lt;<span class="type">String</span>&gt; <span class="method">listProjects</span>() {
+        <span class="kw">return</span> <span class="type">List</span>.<span class="method">of</span>(
+            <span class="str">"udaratacomputers.lk (Live E-Commerce)"</span>,
+            <span class="str">"UrbanFood E-commerce Platform"</span>,
+            <span class="str">"Smart Hall Management System (Keycloak + Spring Boot)"</span>,
+            <span class="str">"Vehicle Ordering System"</span>,
+            <span class="str">"FixMyRide Mobile &amp; Web App"</span>,
+            <span class="str">"Talking Robot with Gemini AI"</span>
+        );
+    }
+}`,
+
+  skills: `<span class="kw">package</span> <span class="plain">com.pawan.portfolio.controller;</span>
+
+<span class="ann">@RestController</span>
+<span class="ann">@RequestMapping</span>(<span class="str">"/api/v1/skills"</span>)
+<span class="kw">public class</span> <span class="type">SkillsController</span> {
+    <span class="ann">@GetMapping</span>
+    <span class="kw">public</span> <span class="type">Map</span>&lt;<span class="type">String</span>, <span class="type">List</span>&lt;<span class="type">String</span>&gt;&gt; <span class="method">getSkills</span>() {
+        <span class="kw">return</span> <span class="type">Map</span>.<span class="method">of</span>(
+            <span class="str">"Backend"</span>, <span class="type">List</span>.<span class="method">of</span>(<span class="str">"Java"</span>, <span class="str">"Spring Boot"</span>, <span class="str">"PostgreSQL"</span>, <span class="str">"REST APIs"</span>),
+            <span class="str">"Frontend"</span>, <span class="type">List</span>.<span class="method">of</span>(<span class="str">"Next.js"</span>, <span class="str">"React"</span>, <span class="str">"TypeScript"</span>, <span class="str">"CSS"</span>),
+            <span class="str">"DevOps"</span>, <span class="type">List</span>.<span class="method">of</span>(<span class="str">"Docker"</span>, <span class="str">"Keycloak"</span>, <span class="str">"Traefik"</span>, <span class="str">"Coolify"</span>, <span class="str">"CI/CD"</span>)
+        );
+    }
+}`,
+
+  contact: `<span class="kw">package</span> <span class="plain">com.pawan.portfolio.controller;</span>
+
+<span class="ann">@RestController</span>
+<span class="ann">@RequestMapping</span>(<span class="str">"/api/v1/contact"</span>)
+<span class="kw">public class</span> <span class="type">ContactController</span> {
+    <span class="ann">@PostMapping</span>(<span class="str">"/hire"</span>)
+    <span class="kw">public</span> <span class="type">ResponseEntity</span>&lt;<span class="type">String</span>&gt; <span class="method">contact</span>(<span class="ann">@RequestBody</span> <span class="type">ContactMessage</span> <span class="plain">msg</span>) {
+        <span class="kw">return</span> <span class="type">ResponseEntity</span>.<span class="method">ok</span>(<span class="str">"Thank you! Pawan will respond promptly."</span>);
+    }
+}`,
+
+  docker: `<span class="cmt"># Multi-stage Docker build for Pawan Portfolio</span>
+<span class="kw">FROM</span> <span class="str">eclipse-temurin:17-jdk-alpine</span> <span class="kw">AS</span> <span class="plain">build</span>
+<span class="kw">WORKDIR</span> <span class="str">/workspace</span>
+<span class="kw">COPY</span> <span class="plain">pom.xml .</span>
+<span class="kw">COPY</span> <span class="plain">src src</span>
+<span class="kw">RUN</span> <span class="plain">./mvnw clean package -DskipTests</span>
+
+<span class="kw">FROM</span> <span class="str">eclipse-temurin:17-jre-alpine</span>
+<span class="kw">VOLUME</span> <span class="str">/tmp</span>
+<span class="kw">COPY</span> <span class="plain">--from=build /workspace/target/*.jar app.jar</span>
+<span class="kw">EXPOSE</span> <span class="num">8080</span>
+<span class="kw">ENTRYPOINT</span> [<span class="str">"java"</span>, <span class="str">"-jar"</span>, <span class="str">"/app.jar"</span>]`,
+
+  compose: `<span class="kw">version:</span> <span class="str">'3.8'</span>
+<span class="kw">services:</span>
+  <span class="method">portfolio-app:</span>
+    <span class="kw">build:</span> <span class="plain">.</span>
+    <span class="kw">ports:</span>
+      - <span class="str">"8080:8080"</span>
+    <span class="kw">depends_on:</span>
+      - <span class="plain">postgres-db</span>
+  <span class="method">postgres-db:</span>
+    <span class="kw">image:</span> <span class="str">postgres:15-alpine</span>
+    <span class="kw">environment:</span>
+      <span class="kw">POSTGRES_DB:</span> <span class="str">pawan_db</span>
+      <span class="kw">POSTGRES_USER:</span> <span class="str">pawan</span>
+    <span class="kw">ports:</span>
+      - <span class="str">"5432:5432"</span>`
+};
+
+function loadFileInEditor(key) {
+  const code = FILE_CONTENTS[key] || '// File empty';
+  $('code-text').innerHTML = code;
+  const lineCount = (code.match(/\n/g) || []).length + 2;
+  renderLineNumbers(Math.max(lineCount, 35));
+
+  const names = {
+    main: 'PawanPortfolioApplication.java',
+    props: 'application.properties',
+    pom: 'pom.xml',
+    about: 'AboutController.java',
+    experience: 'ExperienceController.java',
+    projects: 'ProjectsController.java',
+    skills: 'SkillsController.java',
+    contact: 'ContactController.java',
+    docker: 'Dockerfile',
+    compose: 'docker-compose.yml'
+  };
+  $('active-breadcrumb').textContent = names[key] || key;
+}
+
+function renderLineNumbers(count) {
+  let str = '';
+  for (let i = 1; i <= count; i++) {
+    str += i + '\n';
+  }
+  $('line-numbers').textContent = str;
+}
+
+function selectTab(key, tabEl) {
+  document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('act'));
+  if (tabEl) tabEl.classList.add('act');
+  loadFileInEditor(key);
+}
+
+// 4. BOTTOM TABS SWITCHER
+function switchBottomTab(panelName, tabEl) {
+  document.querySelectorAll('.bot-view').forEach(v => v.classList.remove('act'));
+  document.querySelectorAll('.bot-tab').forEach(t => t.classList.remove('act'));
+  const panel = $('panel-' + panelName);
+  if (panel) panel.classList.add('act');
+  if (tabEl) {
+    tabEl.classList.add('act');
+  } else {
+    const matchingTab = document.querySelector(`.bot-tab[data-panel="${panelName}"]`);
+    if (matchingTab) matchingTab.classList.add('act');
+  }
+}
+
+// 5. STATUS BAR PROGRESS
+function updateStatus(text, progressPct = null) {
+  $('status-text-content').textContent = text;
+  const wrap = $('sb-progress-wrap');
+  const bar = $('sb-progress-bar');
+  if (progressPct !== null) {
+    wrap.style.display = 'block';
+    bar.style.width = progressPct + '%';
+  } else {
+    wrap.style.display = 'none';
+  }
+}
+
+// 6. TOAST NOTIFICATIONS GENERATOR
+function showToast(icon, appName, msg, duration = 4500) {
+  const container = $('notif-area');
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = `
+    <div class="t-icon">${icon}</div>
+    <div style="flex:1;min-width:0;">
+      <div class="t-app">${appName}</div>
+      <div class="t-msg">${msg}</div>
+    </div>
+    <span class="t-time">now</span>
+  `;
+  container.appendChild(toast);
+  requestAnimationFrame(() => requestAnimationFrame(() => toast.classList.add('show')));
+
+  setTimeout(() => {
+    toast.classList.add('hide');
+    setTimeout(() => toast.remove(), 400);
+  }, duration);
+}
+
+// 7. SPRING BOOT ASCII CONSOLE STREAM
+const SPRING_LOGS = [
+  { t: `
+  .   ____          _            __ _ _
+ /\\\\ / ___'_ __ _ _(_)_ __  __ _ \\ \\ \\ \\
+( ( )\\___ | '_ | '_| | '_ \\/ _\` | \\ \\ \\ \\
+ \\\\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::               (v3.3.4)`, cls: 'c-spring-logo', d: 80 },
+  { t: '', cls: 'c-muted', d: 50 },
+  { t: '2026-10-20 01:15:02.104  INFO 4291 --- [main] c.p.portfolio.PawanPortfolioApplication  : Starting PawanPortfolioApplication using Java 17.0.12', cls: 'c-muted', d: 240 },
+  { t: '2026-10-20 01:15:02.108  INFO 4291 --- [main] c.p.portfolio.PawanPortfolioApplication  : Active profiles: production, cloud', cls: 'c-muted', d: 180 },
+  { t: '2026-10-20 01:15:02.780  INFO 4291 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)', cls: 'c-info', d: 320 },
+  { t: '2026-10-20 01:15:03.112  INFO 4291 --- [main] o.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]', cls: 'c-muted', d: 200 },
+  { t: '2026-10-20 01:15:03.450  INFO 4291 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting... Connected to PostgreSQL at localhost:5432/pawan_db', cls: 'c-info', d: 300 },
+  { t: '2026-10-20 01:15:03.920  INFO 4291 --- [main] o.s.b.a.e.web.EndpointLinksResolver     : Exposed 14 endpoint(s) beneath base path \'/actuator\'', cls: 'c-muted', d: 250 },
+  { t: '2026-10-20 01:15:04.280  INFO 4291 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path \'\'', cls: 'c-info', d: 260 },
+  { t: '2026-10-20 01:15:04.302  INFO 4291 --- [main] c.p.portfolio.PawanPortfolioApplication  : Started PawanPortfolioApplication in 2.418 seconds (process running for 2.89)', cls: 'c-highlight', d: 150 },
+  { t: '', cls: 'c-muted', d: 80 },
+  { t: '🚀 Application is ready at http://localhost:8080/', cls: 'c-info', d: 100 }
+];
+
+async function streamConsoleLogs() {
+  const consolePanel = $('panel-run');
+  consolePanel.innerHTML = '';
+  for (const log of SPRING_LOGS) {
+    await delay(log.d || 150);
+    const line = document.createElement('div');
+    line.className = log.cls;
+    line.style.whiteSpace = 'pre';
+    line.textContent = log.t;
+    consolePanel.appendChild(line);
+    consolePanel.scrollTop = consolePanel.scrollHeight;
+  }
+}
+
+// 8. EXECUTE SPRING BOOT RUN (THE CORE EXPERIENCE)
+let isExecuting = false;
+async function executeSpringBootRun() {
+  if (isExecuting) return;
+  isExecuting = true;
+
+  // Dismiss hints
+  $('cta-hint').classList.remove('show');
+  $('main-run-btn').classList.remove('pulse');
+
+  // Switch to Run panel
+  switchBottomTab('run');
+  updateStatus("Compiling 'pawan-portfolio' (javac 17)...", 25);
+  $('svc-main-status').textContent = 'Compiling...';
+  $('svc-main-status').className = 'svc-status-pill stopped';
+
+  const consolePanel = $('panel-run');
+  consolePanel.innerHTML = '<div class="c-muted">&gt; Task :compileJava UP-TO-DATE</div>';
+  await delay(350);
+
+  consolePanel.innerHTML += '<div class="c-muted">&gt; Task :processResources UP-TO-DATE</div>';
+  updateStatus("Building Spring Boot fat JAR...", 60);
+  await delay(350);
+
+  consolePanel.innerHTML += '<div class="c-muted">&gt; Task :classes</div>';
+  consolePanel.innerHTML += '<div class="c-info">BUILD SUCCESSFUL in 1s</div>';
+  updateStatus("Booting JVM with Spring Boot...", 85);
+  await delay(300);
+
+  // Stream ASCII spring boot banner and logs
+  await streamConsoleLogs();
+
+  updateStatus("Application active on http://localhost:8080", 100);
+  $('svc-main-status').textContent = 'Running (:8080)';
+  $('svc-main-status').className = 'svc-status-pill running';
+
+  // Notifications
+  showToast('🌱', 'Spring Boot 3.3.4', 'PawanPortfolioApplication started on <strong>http://localhost:8080</strong>');
+  await delay(700);
+  showToast('💬', 'Slack — DvTechLabs', '<strong>Dev Lead:</strong> "Pawan, review passed! Good job on the microservices."');
+
+  // Open the in-IDE browser viewport
+  await delay(1200);
+  $('ide-browser-strip').classList.add('open');
+
+  // Trigger auto-transition after 3.5 seconds or allow manual click
+  setTimeout(() => {
+    launchPortfolio();
+  }, 3800);
+}
+
+function executeDebugRun() {
+  switchBottomTab('debug');
+  showToast('🐞', 'IntelliJ Debugger', 'Breakpoint hit at <strong>PawanPortfolioApplication.java:22</strong>');
+}
+
+// 9. PARTICLE EXPLOSION & PORTFOLIO TRANSITION
+class ParticleBurst {
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext('2d');
+    this.particles = [];
+    this.animating = false;
+    this.onComplete = null;
+  }
+
+  resize() {
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+  }
+
+  create() {
+    this.particles = [];
+    const colors = ['#2b2b2b', '#1e1f22', '#369650', '#56a8f5', '#ffc66d', '#cf8dfb', '#e06c75', '#ffffff'];
+    const total = 2200;
+    for (let i = 0; i < total; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = Math.random() * 22 + 4;
+      this.particles.push({
+        x: window.innerWidth / 2,
+        y: window.innerHeight / 2,
+        vx: Math.cos(angle) * speed * (0.6 + Math.random()),
+        vy: Math.sin(angle) * speed * (0.6 + Math.random()),
+        size: Math.random() * 5 + 1.5,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        alpha: 1,
+        decay: 0.007 + Math.random() * 0.012,
+        gravity: 0.06
+      });
+    }
+  }
+
+  start(callback) {
+    this.onComplete = callback;
+    this.resize();
+    this.create();
+    this.animating = true;
+    this.canvas.style.opacity = '1';
+    this.render();
+  }
+
+  render() {
+    if (!this.animating) return;
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    for (let i = 0; i < this.particles.length; i++) {
+      const p = this.particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += p.gravity;
+      p.vx *= 0.98;
+      p.vy *= 0.98;
+      p.alpha -= p.decay;
+
+      this.ctx.save();
+      this.ctx.globalAlpha = Math.max(0, p.alpha);
+      this.ctx.fillStyle = p.color;
+      this.ctx.fillRect(p.x, p.y, p.size, p.size);
+      this.ctx.restore();
+    }
+
+    this.particles = this.particles.filter(p => p.alpha > 0);
+
+    if (this.particles.length === 0) {
+      this.animating = false;
+      this.canvas.style.opacity = '0';
+      if (this.onComplete) this.onComplete();
+    } else {
+      requestAnimationFrame(() => this.render());
+    }
+  }
+}
+
+let burstSystem = null;
+function launchPortfolio() {
+  if (burstSystem && burstSystem.animating) return;
+  const canvas = $('particle-canvas');
+  burstSystem = new ParticleBurst(canvas);
+
+  const desktop = $('os-desktop');
+  desktop.style.transform = 'scale(0.95)';
+  desktop.style.opacity = '0.3';
+
+  burstSystem.start(() => {
+    $('portfolio-overlay').classList.add('vis');
+    desktop.style.display = 'none';
+  });
+}
+
+function launchPortfolioDirect() {
+  $('portfolio-overlay').classList.add('vis');
+  setTimeout(() => {
+    $('os-desktop').style.display = 'none';
+  }, 400);
+}
+
+// 10. WINDOW INTERACTION & CONTEXT MENUS
+function animateWinClose() {
+  $('ij-win').style.transform = 'scale(0.9) translateY(40px)';
+  $('ij-win').style.opacity = '0';
+  setTimeout(() => { $('ij-win').style.display = 'none'; }, 400);
+}
+function animateWinMin() {
+  $('ij-win').style.transform = 'scale(0.4) translateY(400px)';
+  $('ij-win').style.opacity = '0';
+  setTimeout(() => { $('ij-win').style.display = 'none'; }, 400);
+}
+function animateWinRestore() {
+  $('ij-win').style.display = 'flex';
+  requestAnimationFrame(() => {
+    $('ij-win').style.transform = 'scale(1) translateY(0)';
+    $('ij-win').style.opacity = '1';
+  });
+}
+
+function showContextMenu(x, y) {
+  const menu = $('context-menu');
+  menu.style.display = 'block';
+  menu.style.left = Math.min(x, window.innerWidth - 200) + 'px';
+  menu.style.top = Math.min(y, window.innerHeight - 150) + 'px';
+}
+document.addEventListener('click', () => { $('context-menu').style.display = 'none'; });
+
+function triggerGitBlame() {
+  showToast('🐙', 'Git Blame', '<strong>Pawan Bulathwaththa</strong> committed: <em>"feat: engineered scalable full stack portfolio"</em>', 5000);
+}
+
+// 11. KEYBOARD SHORTCUTS (SHIFT+F10 to RUN)
+document.addEventListener('keydown', e => {
+  if (e.shiftKey && e.key === 'F10') {
+    e.preventDefault();
+    executeSpringBootRun();
+  }
+});
+
+// 12. INITIALIZATION SEQUENCE
+window.addEventListener('DOMContentLoaded', async () => {
+  initClock();
+  renderFileTree();
+  loadFileInEditor('main');
+
+  await delay(400);
+  $('ij-win').classList.add('open');
+
+  await delay(800);
+  updateStatus("Scanning project files...", 30);
+  await delay(700);
+  updateStatus("Gradle: sync finished in 450ms", 100);
+  await delay(400);
+  updateStatus("Ready");
+
+  // Show Run CTA pulse after 1.5 seconds
+  setTimeout(() => {
+    $('cta-hint').classList.add('show');
+  }, 1600);
+
+  // Show intro Slack toast
+  setTimeout(() => {
+    showToast('🐙', 'GitHub Actions', 'Workflow <strong>Deploy-Staging</strong> succeeded on branch <strong>main</strong>');
+  }, 2800);
+});
 </script>
 </body>
 </html>
